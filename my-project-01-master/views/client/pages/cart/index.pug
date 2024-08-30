@@ -1,0 +1,43 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+    link(rel="stylesheet", href="/css/cart.css")
+    .container
+        h1.text-center Giỏ hàng của bạn
+        if cartDetail
+            .row
+                .col-md-12
+                    table.table.table-bordered
+                        thead
+                            tr
+                                th STT
+                                th Ảnh đại diện
+                                th Tên sản phẩm
+                                th Số lượng
+                                th Đơn giá
+                                th Thành tiền
+                                th Hành động
+                        tbody#datarow
+
+                            each product, index in cartDetail.products
+                                tr
+                                    td #{index + 1}
+                                    td
+                                        img.hinhdaidien(src=product.productInfor.thumbnail alt=product.productInfor.title style="width: 80px;")
+                                    td() #{product.productInfor.title}
+                                    td.text-right
+                                        form(action=`/cart/update/${product.productId}` method="POST")
+                                            input(type="number" name="quantity" value=product.quantity min="1")
+                                            button.btn.btn-primary(type="submit") Cập nhật
+                                    td.text-right #{product.productInfor.price} VND
+                                    td.text-right #{(product.productInfor.price * product.quantity)} VND
+                                    td
+                                        a.btn.btn-danger.btn-delete-sanpham(href=`/cart/remove/${product.productId}` data-sp-ma=product.productId._id)
+                                            i.fa.fa-trash(aria-hidden="true") Xóa
+            a.btn.btn-warning.btn-md(href="/")
+                i.fa.fa-arrow-left(aria-hidden="true") &nbsp;Quay về trang chủ
+            a.btn.btn-primary.btn-md(href="/checkout")
+                i.fa.fa-shopping-cart(aria-hidden="true") &nbsp;Thanh toán
+        else
+            p Giỏ hàng của bạn đang trống.
