@@ -1,0 +1,15 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+block main 
+ .container(style="display: flex")
+    .product-card.col-5
+      img(src=product.thumbnail alt="Tên sản phẩm")
+      h2 #{product.title}
+      p.price #{product.price}$
+      if discount
+        p.discounted-price Giảm giá: #{product.discountPercentage}
+      form(action=`/cart/add/${product.id}` method="post")
+        input(type="number" class="form-control mb-2" name="quantity" value="1", min="1", max= product.stock)
+        button(type="submit", class="btn btn-success btn-block") Thêm vào giỏ hàng
+    .discription-product.col-6
+      p #{product.description}

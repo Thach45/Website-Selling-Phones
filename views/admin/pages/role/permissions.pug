@@ -1,0 +1,37 @@
+extends ../../layouts/default.pug
+
+block main
+ div(class="text-right")
+  button(type="submit", class="btn btn-primary mb-3", button-submit) Cập nhật
+ table(class="table table-hover")
+  thead 
+    tr
+      th Tính năng 
+      each item in records
+       th(class="text-center" _id=item.id ) #{item.title} 
+  tbody 
+   tr(data-name="role-view")
+    td Xem
+    each item in records
+     td(class="text-center")
+      input(type="checkbox" class="permission-checkbox")
+    tr(data-name="role-add")
+     td Thêm mới
+     each item in records
+      td(class="text-center")
+       input(type="checkbox" class="permission-checkbox")
+    tr(data-name="role-edit")
+     td Chỉnh sửa
+     each item in records
+      td(class="text-center")
+       input(type="checkbox" class="permission-checkbox")
+    tr(data-name="role-delete")
+     td Xoá
+     each item in records
+      td(class="text-center")
+       input(type="checkbox" class="permission-checkbox")
+  form(action="/admin/role/permissions?_method=PATCH", method="post", form-role)
+    div(class="form-group")
+      input(type="text", class="form-control", name="permissions")
+  script(src="/admin/js/role.js")
+

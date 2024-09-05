@@ -1,0 +1,11 @@
+mixin pagination (object)
+     ul(class="pagination")
+            if(object.current > 1)
+                li(class="page-item")
+                    button(class="page-link" page=object.current - 1) Trang trước
+            -for(var i = 1; i <= object.page;i++)
+                li(class=`page-item ${object.current == i ? "active" : ""}`)
+                    button(class=`page-link` page=i) Trang #{i}
+            if(object.current < object.page)
+             li(class="page-item")
+                button(class="page-link" page = object.current+1) Trang kế tiếp

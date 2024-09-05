@@ -1,0 +1,6 @@
+mixin select-item(arr , lv = 1)
+    each item in arr 
+      -const pre = Array(lv+1).join("-- ")
+        option(value=item.id) #{pre}#{item.title}
+        if item.child && item.child.length > 0
+            +select-item(item.child,lv+1) 
