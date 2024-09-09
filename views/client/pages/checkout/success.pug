@@ -1,0 +1,37 @@
+extends ../../layouts/default.pug
+
+block main
+    .container.mt-4
+        .py-5.text-center.success-container
+            i.fa.fa-check-circle.fa-4x(aria-hidden="true")
+            h2 Thanh toán thành công
+            p.lead Cảm ơn bạn đã mua hàng tại cửa hàng chúng tôi. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+            .order-details.mt-4
+                h3 Chi tiết đơn hàng
+                .detail-item
+                    span.label Mã đơn hàng:
+                    span.value #{order.id}
+                .detail-item
+                    span.label Ngày đặt hàng:
+                    span.value #{order.createdAt}
+                .detail-item
+                    span.label Tổng tiền:
+                    span.value #{order.total}$
+            .customer-details.mt-4
+                h3 Thông tin khách hàng
+                .detail-item
+                    span.label Tên khách hàng:
+                    span.value #{order.inforUser.name}
+                .detail-item
+                    span.label Email:
+                    span.value #{order.inforUser.email}
+                .detail-item
+                    span.label Số điện thoại:
+                    span.value #{order.inforUser.phone}
+                .detail-item
+                    span.label Địa chỉ:
+                    span.value #{order.inforUser.address}
+            p.lead
+                a.button(href="/") Tiếp tục mua sắm
+
+    

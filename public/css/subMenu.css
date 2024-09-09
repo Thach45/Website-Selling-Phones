@@ -1,0 +1,46 @@
+/* Định dạng cho submenu */
+/* Định dạng cho submenu */
+.sub-menu {
+    display: none; /* Ẩn submenu */
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin-top: 10px;
+    z-index: 1000;
+    width: 200px; /* Đặt chiều rộng cố định cho submenu */
+}
+
+/* Hiển thị submenu khi hover */
+.sub-class:hover .sub-menu {
+    display: block;
+}
+
+/* Định dạng cho các mục trong submenu */
+.sub-class .sub-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Định dạng cho các liên kết trong submenu */
+.sub-class .sub-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eaeaea;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hiệu ứng hover cho các liên kết trong submenu */
+.sub-class .sub-menu li a:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+/* Định dạng cho mục cuối cùng trong submenu */
+.sub-class .sub-menu li:last-child a {
+    border-bottom: none;
+}

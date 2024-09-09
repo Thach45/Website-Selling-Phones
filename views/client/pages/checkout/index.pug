@@ -19,7 +19,7 @@ block main
               div
                 h6.my-0 #{product.productInfor.title}
                 small.text-muted #{product.productInfor.price}$ x #{product.quantity}
-              span.text-muted #{product.productInfor.price * product.quantity}$
+              span.text-muted #{product.productInfor.price *(100 - product.productInfor.discountPercentage)/100* product.quantity}$
           li.list-group-item.d-flex.justify-content-between
            span Tổng thành tiền
            strong #{cartDetail.total}$

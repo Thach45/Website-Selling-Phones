@@ -16,6 +16,7 @@ block main
                                 th Tên sản phẩm
                                 th Số lượng
                                 th Đơn giá
+                                th Giảm giá
                                 th Thành tiền
                                 th Hành động
                         tbody#datarow
@@ -30,8 +31,9 @@ block main
                                         form(action=`/cart/update/${product.productId}` method="POST")
                                             input(type="number" name="quantity" value=product.quantity min="1")
                                             button.btn.btn-primary(type="submit") Cập nhật
-                                    td.text-right #{product.productInfor.price} VND
-                                    td.text-right #{(product.productInfor.price * product.quantity)} VND
+                                    td.text-right #{product.productInfor.price} VND 
+                                    td.text-right #{product.productInfor.discountPercentage}%
+                                    td.text-right #{(product.productInfor.price * ((100 - product.productInfor.discountPercentage) / 100) * product.quantity)} VND
                                     td
                                         a.btn.btn-danger.btn-delete-sanpham(href=`/cart/remove/${product.productId}` data-sp-ma=product.productId._id)
                                             i.fa.fa-trash(aria-hidden="true") Xóa

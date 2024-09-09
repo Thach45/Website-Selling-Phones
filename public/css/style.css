@@ -192,37 +192,6 @@ footer.footer .footer-bottom {
 
 
 
-/* Ẩn tất cả các submenu */
-.sub-class ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  position: absolute; /* Định vị submenu */
-  top: 100%; /* Đặt dưới liên kết cha */
-  right: 0;
-  background: white;
-}
-
-.sub-menu {
-  display: none !important; /* Ẩn submenu */
-}
-.sub-class:hover .sub-menu {
-  display: flex !important; /* Hiển thị submenu khi hover */
-}
-.sub-class .sub-menu li ul {
-  display: none !important; /* Ẩn submenu con */
-}
-
-.sub-class .sub-menu li:hover ul {
-  display: flex !important; /* Ẩn submenu con */
-}
-
-.sub-class .sub-menu li ul li ul li {
-  display: none !important; /* Ẩn submenu con */
-}
-.sub-class .sub-menu li ul li:hover ul li {
-  display: block !important; /* Ẩn submenu con */
-}
 
 .inner-featured {
   color: #e64747;

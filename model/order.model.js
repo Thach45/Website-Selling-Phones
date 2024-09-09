@@ -13,7 +13,11 @@ const orderSchema = new mongoose.Schema({
         price: Number,
         discount: Number,
         quantity: Number
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
     
 })
 const Order = mongoose.model("Order", orderSchema, "order")
