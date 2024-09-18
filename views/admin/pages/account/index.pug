@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug
+include ../../mixins/filters.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/alert.pug
+
+block main 
+    h1 Nhóm quyền
+    .card.mb-3
+        .card-header Danh sách
+            .row   
+                .col-8 
+                .col-4 
+                    a(
+                        href="account/create",
+                        class="btn btn-outline-success"
+                    ) + Thêm mới 

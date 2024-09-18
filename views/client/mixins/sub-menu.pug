@@ -1,7 +1,7 @@
 mixin sub-menu(records, path)
-    ul
+    ul.menu1
         each record in records
-            li
+            li.menu2
                 a(href=path + record.slug) #{record.title}
-                if record.child
+                if record.child 
                     +sub-menu(record.child, path)

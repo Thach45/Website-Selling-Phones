@@ -9,12 +9,15 @@ const categogy = require("./categogy.routers");
 
 const role = require("./role.routers");
 
+const account = require("./account.routers");
 module.exports = (app) => {
     const pathAdmin = systemConfig.prefixAdmin;
     app.use(pathAdmin + '/dashboard', dashBoard);
     app.use(pathAdmin + '/products', product);
     app.use(pathAdmin + '/products-categogy', categogy);
     app.use(pathAdmin + '/role', role);
+    app.use(pathAdmin + '/account', account);
+
 
 
 }
