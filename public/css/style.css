@@ -7,6 +7,18 @@
     max-width: 100%;
   }
   
+.inner-content > a{ 
+    text-decoration: none;
+    color: #333;
+  }
+.inner-button > a {
+    text-decoration: none;
+    color: blue;
+    
+  }
+.inner-button > a:hover {
+    font-size: larger;
+  }
 .header .inner-menu > ul {
     list-style: none;
   
