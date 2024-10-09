@@ -4,17 +4,23 @@ const md5 = require("md5");
 
 module.exports.index = async (req, res) => {
 
-    const accounts = await Account.find();
-
+    const accounts = await Account.find().select("-password -token")
+   for(const account of accounts){
+         const role = await Role.findOne({
+              _id: account.role_id,
+              deleted: false
+         });
+         account.role = role;
+   }
     res.render("admin/pages/account/index.pug", {
-        pageTitle: "Trang quản lý tài khoản"
+        pageTitle: "Trang quản lý tài khoản",
+        accounts: accounts
     })
 }
 
 
 module.exports.create = async (req, res) => {
     const roles = await Role.find({deleted: false});
-    console.log(roles);
     res.render("admin/pages/account/create.pug", {
         pageTitle: "Trang tạo tài khoản",
         roles: roles
@@ -22,8 +28,19 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.createP = async (req, res) => {
-    req.body.password = md5(req.body.password);
-    const account = new Account(req.body);
-    account.save();
-    res.redirect("/admin/account");
+    const emailExist = await Account.findOne({
+        email: req.body.email,
+        deleted: false
+    });
+    if(emailExist){
+        res.flash("error", "Email đã tồn tại");
+        res.redirect("back");
+    }
+    else{
+
+        req.body.password = md5(req.body.password);
+        const account = new Account(req.body);
+        account.save();
+        res.redirect("/admin/account");
+    }
 }

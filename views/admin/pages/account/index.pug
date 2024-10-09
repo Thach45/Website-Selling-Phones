@@ -15,3 +15,24 @@ block main
                         href="account/create",
                         class="btn btn-outline-success"
                     ) + Thêm mới 
+        .card-body
+            table(class="table table-bordered table-hover")
+                thead
+                    tr
+                        th STT
+                        th Tên tài khoản
+                        th Tên nhóm quyền
+                        th Email
+                        th Hành động
+                tbody
+                    each account, index in accounts
+                        tr
+                            td #{index + 1}
+                            td #{account.username}
+                            td #{account.role.title}
+                            td #{account.email}
+                            td
+                                a(
+                                    href=`account/delete/${account._id}`,
+                                    class="btn btn-outline-danger"
+                                ) Xóa (chưa làm xong)

@@ -1,0 +1,30 @@
+include ../../mixins/alert.pug
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Đăng nhập
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+    
+    link(rel="stylesheet" href="/admin/css/stylesAuth.css")
+  body
+    
+    .login-container
+    
+      h2 Đăng nhập
+      form(action="/admin/auth/login" method="post")
+        .form-group
+          label(for="username") Tên đăng nhập
+          input(type="text" id="username" name="username" required)
+          +alert-error(2000)
+        .form-group
+          label(for="password") Mật khẩu
+          input(type="password" id="password" name="password" required)
+        .form-group
+          button(type="submit") Đăng nhập
+    script(src="scripts.js")
+    script(src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
