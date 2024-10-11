@@ -5,9 +5,12 @@ module.exports.index = async (req, res) => {
         deleted: false
     }
     const records = await Role.find(find);
+
+
+
     res.render("admin/pages/role/index.pug", {
         pageTitle: "Trang phân quyền",
-        records: records
+        records: records,
     })
 }
 
@@ -70,10 +73,15 @@ module.exports.permissions = async (req, res) => {
         let find = {
             deleted: false
         }
-        const role = await Role.find(find)
+        const records = await Role.find(find)
+        for (const record of records) {
+            for (const permission of record.permissions) {
+                record[permission] = true;
+            }
+        }
         res.render("admin/pages/role/permissions.pug", {
             pageTitle: "Chỉnh sửa phân quyền",
-            records: role
+            records: records
         })
 
     } catch (error) {
@@ -89,11 +97,21 @@ module.exports.permissionsPatch = async (req, res) => {
     }
     const permissions = JSON.parse(req.body.permissions);
     try {
-        for (const item of permissions) {
-            const namePermissions = item.name.split(',');
-            await Role.updateOne({ _id: item.permission },{ $push: { permissions:namePermissions }} )
+
+        if(permissions){
+
+            for (const item of permissions) {
+                const namePermissions = item.name.split(',');
+                await Role.updateOne({ _id: item.permission }, { $set: { permissions: [] } })
+            }
+            for (const item of permissions) {
+                const namePermissions = item.name.split(',');
+
+                await Role.updateOne({ _id: item.permission }, { $push: { permissions: namePermissions } })
+            }
+
+            res.redirect("/admin/role/permissions")
         }
-        res.redirect("/admin/role/permissions")
 
     } catch (error) {
         res.redirect("back")

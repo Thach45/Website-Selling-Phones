@@ -15,6 +15,7 @@ buttonSubmit.addEventListener('click', () => {
           name: name,
           permission: idName
         });
+        
       }
     });
   });

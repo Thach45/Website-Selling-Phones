@@ -1,15 +1,20 @@
 sider.sider 
     .inner-menu
         ul.text-left
-            li 
+            li
                 a(href="/admin/dashboard") Tổng quan 
             li 
+             if(role.permissions.includes('rolelistproduct'))
                 a(href="/admin/products") Danh sách sản phẩm 
             li 
+             if(role.permissions.includes('rolecategoryproduct'))
                 a(href="/admin/products-categogy") Danh mục sản phẩm 
-            li 
+            li  
+             if(role.permissions.includes('rolelistrole'))
                 a(href="/admin/role") Nhóm quyền 
             li
+             if(role.permissions.includes('rolelistpermission'))
                 a(href="/admin/role/permissions") Phân quyền 
             li
+             if(role.permissions.includes('rolepermission'))
                 a(href="/admin/account") Danh sách tài khoản 
