@@ -7,12 +7,12 @@ header.header
                     .inner-logo
                         a(href="/")
                             img(src="/images/logo.jpg")
-                .col-5 
+                .col-4
                     form(action="/search" method="get")
                         .input-group
                             input(type="text" class="form-control" name="keyword" placeholder="Tìm kiếm sản phẩm")
                             button(type="submit" class="btn btn-primary") Tìm kiếm
-                .col-4
+                .col-5
                     .inner-menu
                         ul
                             li 
@@ -27,3 +27,7 @@ header.header
                                     a(href="/cart") Giỏ hàng(#{(cart.total ? cart.total:0)})
                                 else
                                     a(href="/cart") Giỏ hàng(0)
+                            li 
+                                a(href="/user/register") Đăng ký
+                            li
+                                a(href="/user/login") Đăng nhập

@@ -13,6 +13,8 @@ const subMenu = require("../../middlewares/client/category");
 const cart = require("../../middlewares/client/cart");
 
 const checkoutRouters = require("./checkout.routers");
+
+const user = require("./user.routers");
 module.exports = (app) => {
     // Sử dụng middleware để kiểm tra và tạo cartID nếu chưa có
     app.use(cart.cartID);
@@ -26,5 +28,7 @@ module.exports = (app) => {
     app.use('/cart', subMenu.category, cartRouters);
 
     app.use("/checkout", subMenu.category,checkoutRouters);
+    app.use("/user", subMenu.category,user);
+
 
 }
