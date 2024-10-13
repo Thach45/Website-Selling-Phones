@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Đăng nhập
+    link(rel="stylesheet" href="/css/register.css") 
+  body
+    .register-container
+      .register-card
+        .register-header
+          h2 Đăng nhập
+        .register-body
+          form(action="/user/login" method="POST")
+            .form-group
+              label(for="email") Email
+              input#email.form-control(type="email" name="email" required)
+              
+            .form-group
+              label(for="password") Mật khẩu
+              input#password.form-control(type="password" name="password" required)
+              if(error)
+                p.text-error #{error}
+            .form-group.text-center
+              button.btn.btn-primary(type="submit") Đăng nhập
