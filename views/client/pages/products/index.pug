@@ -9,7 +9,8 @@ block main
              each item in products
                 .col-4.mb-3
                     .product-item 
-                        
+                        if item.featured
+                                .inner-featured Nổi Bật
                         .inner-image
                             img(src=item.thumbnail)
                         .inner-content 
@@ -20,5 +21,3 @@ block main
                             .inner-discount #{item.discountPercentage}% 
                             .inner-button 
                                 a(href=`/products/detail/${item.slug}`) Xem chi tiết
-                            if item.featured
-                                .inner-featured Nổi Bật

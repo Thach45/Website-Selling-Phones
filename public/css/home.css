@@ -1,0 +1,33 @@
+.mySlides {display:none;}
+.top-home{
+    align-items: center;
+    margin: 20px 0px;
+}
+.main-content img{
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    
+}
+.product-item{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.product-outstanding{
+    padding: 20px;
+    border-radius: 10px;
+
+}
+/* .news-list{
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+
+} */
+
+.news-item img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}

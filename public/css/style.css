@@ -1,70 +1,91 @@
 .header {
-    border-bottom: 1px solid #ddd;
-  }
-  
+  border-bottom: 1px solid #ddd;
+}
+
 .header .inner-logo img {
-    max-height: 60px; /* Điều chỉnh chiều cao tối đa của logo */
-    max-width: 100%;
-  }
-  
-.inner-content > a{ 
-    text-decoration: none;
-    color: #333;
-  }
-.inner-button > a {
-    text-decoration: none;
-    color: blue;
-    
-  }
-.inner-button > a:hover {
-    font-size: larger;
-  }
-.header .inner-menu > ul {
-    list-style: none;
-  
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-.header .inner-menu  ul  li a{
-    margin-left: 1.5rem;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
+  max-height: 60px;
+  /* Điều chỉnh chiều cao tối đa của logo */
+  max-width: 100%;
+}
+
+.inner-content>a {
+  text-decoration: none;
+  color: #333;
+}
+
+.inner-button>a {
+  text-decoration: none;
+  color: blue;
+
+}
+
+.inner-button>a:hover {
+  font-size: larger;
+}
+
+.header .inner-menu>ul {
+  list-style: none;
+
+  margin: 10px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.header .inner-cart > ul{
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 10px;
+}
+.header .inner-menu ul li a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-size: 20px;
+}
+.inner-menu{
+  border-top: 1px solid #ddd;
+}
 .header .inner-menu ul li a:hover {
-    color: #ffc107;
-  }
+  color: #ffc107;
+}
 
 .inner-image img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
+
 .product-item:hover {
-  transform: translateY(-5px); /* Hiệu ứng nâng nhẹ khi hover */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Đổ bóng đậm hơn khi hover */
+  transform: translateY(-5px);
+  /* Hiệu ứng nâng nhẹ khi hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  /* Đổ bóng đậm hơn khi hover */
 }
+
 .inner-title {
   font-size: 1.2em;
   margin-bottom: 5px;
   color: #333;
   text-decoration: none;
-  display: block; /* Đảm bảo tiêu đề luôn chiếm trọn chiều rộng */
-  white-space: nowrap; /* Ngăn tiêu đề xuống dòng */
+  display: block;
+  /* Đảm bảo tiêu đề luôn chiếm trọn chiều rộng */
+  white-space: nowrap;
+  /* Ngăn tiêu đề xuống dòng */
   overflow: hidden;
-  text-overflow: ellipsis; /* Hiển thị dấu "..." khi tiêu đề quá dài */
+  text-overflow: ellipsis;
+  /* Hiển thị dấu "..." khi tiêu đề quá dài */
 }
+
 .product-item {
 
-  overflow: hidden; /* Giấu phần nội dung bị tràn ra ngoài khi hover */
+  overflow: hidden;
+  /* Giấu phần nội dung bị tràn ra ngoài khi hover */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /*CSS cho footer*/
-.footer{
-    background-color: #474f57;
+.footer {
+  background-color: #474f57;
 }
+
 footer.footer .footer-bottom {
   text-align: center;
   color: #ddd;
@@ -78,6 +99,7 @@ footer.footer .footer-bottom {
   margin-bottom: 0;
 
 }
+
 .box-head .inner-title {
   margin-bottom: 0;
   padding-bottom: 10px;
@@ -85,23 +107,27 @@ footer.footer .footer-bottom {
   font-weight: 600;
   color: green;
 }
-.product-item .inner-image > img {
+
+.product-item .inner-image>img {
   margin: 10px;
   max-width: 150px;
   max-height: 150px;
- 
+
 }
+
 .product-item .inner-content .inner-price-old {
   font-size: 14px;
   font-weight: 600;
   color: red;
   text-decoration: line-through;
 }
+
 .product-item .inner-content .inner-price-new {
   font-size: 14px;
   font-weight: 600;
   color: green
 }
+
 .product-item .inner-content .inner-discount {
   font-size: 14px;
   font-weight: 600;
@@ -111,12 +137,13 @@ footer.footer .footer-bottom {
   padding: 3px 10px;
   border-radius: 8px;
 }
+
 .inner-content {
   padding: 6px;
 }
 
 /* ------------- */
-  
+
 .product-card {
   background-color: #fff;
   border: 1px solid #e1e1e1;
@@ -192,14 +219,15 @@ footer.footer .footer-bottom {
   background-color: #0056b3;
 }
 
-.discription-product{
+.discription-product {
   margin: 20px;
 }
 
 /* Định kiểu cho danh sách cha */
 .sub-class {
   z-index: 999;
-  position: relative; /* Đảm bảo submenu được định vị tương đối với cha */
+  position: relative;
+  /* Đảm bảo submenu được định vị tương đối với cha */
 }
 
 
@@ -207,11 +235,19 @@ footer.footer .footer-bottom {
 
 .inner-featured {
   color: #e64747;
-  background-color: #ffe0e0; /* Màu nền nhạt để làm nổi bật */
-  padding: 10px; /* Khoảng cách bên trong */
-  border-radius: 5px; /* Góc bo tròn */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
-  font-weight: bold; /* Chữ đậm */
-  text-align: center; /* Căn giữa nội dung */
-  margin: 10px 0; /* Khoảng cách bên ngoài */
+  background-color: #ffe0e0;
+  /* Màu nền nhạt để làm nổi bật */
+  border-radius: 5px;
+  /* Góc bo tròn */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Bóng đổ nhẹ */
+  font-weight: bold;
+  /* Chữ đậm */
+  text-align: center;
+  /* Căn giữa nội dung */
+  margin: 10px 0;
+  /* Khoảng cách bên ngoài */
+  z-index:1;
+  position: absolute;
+  display: inline;
 }
