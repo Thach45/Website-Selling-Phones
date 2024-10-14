@@ -9,6 +9,7 @@ const categogy = require("./categogy.routers");
 const auth = require("./auth.routers");
 const role = require("./role.routers");
 const checkUser = require("../../middlewares/admin/auth.middleware");
+const news = require("./news.routers");
 const account = require("./account.routers");
 module.exports = (app) => {
     const pathAdmin = systemConfig.prefixAdmin;
@@ -18,6 +19,8 @@ module.exports = (app) => {
     app.use(pathAdmin + '/role', checkUser.checkAuth ,role);
     app.use(pathAdmin + '/account',checkUser.checkAuth , account);
     app.use(pathAdmin + '/auth', auth);
+    app.use(pathAdmin + '/news', checkUser.checkAuth, news);
+
 
 
 

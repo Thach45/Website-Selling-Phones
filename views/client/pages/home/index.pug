@@ -33,21 +33,42 @@ block main
         .row.mb-3
             +box-head("Tin Khuyến Mãi")
         .row.news-list
+         each item in discounts
             .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
                     .news-item 
                         .inner-image
-                        img(src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/8e/e2/8ee259a12d14aad53dbafd2b68be60ba.png")
-            .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
-                    .news-item 
-                        .inner-image
-                        img(src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/c5/e7/c5e7805cc46569b775032d20d8663fa9.png")
+                        img(src=item.thumbnail)
 
+    .row.blog-news.mt-4
+        .row.mb-3
+            +box-head("Tin Tức")
+        .row.blog-list
             .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
-                    .news-item 
-                        .inner-image
-                        img(src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/ae/bb/aebb34a82b6753127ed0617dd8b8401f.png")
+                    .blog-item 
+                      .inner-image-blog
+                        a(href="https://www.thegioididong.com/tin-tuc/5-cach-tim-kiem-bai-hat-dua-tren-giai-dieu-cuc-nhanh-867214")                 
+                         img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:300:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tecno-spark-go-1-home.jpg")
+                       
+                      .inner-title-blog Đánh giá chi tiết Samsung Galaxy
             .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
-                    .news-item 
-                        .inner-image
-                        img(src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/85/ba/85baa31284d3202744987621a5bd941f.png")
+                    .blog-item 
+                      .inner-image-blog
+                        a(href="https://www.thegioididong.com/tin-tuc/5-cach-tim-kiem-bai-hat-dua-tren-giai-dieu-cuc-nhanh-867214")                 
+                         img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:300:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tecno-spark-go-1-home.jpg")
+                       
+                      .inner-title-blog Đánh giá chi tiết Samsung Galaxy
+            .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
+                    .blog-item 
+                      .inner-image-blog
+                        a(href="https://www.thegioididong.com/tin-tuc/5-cach-tim-kiem-bai-hat-dua-tren-giai-dieu-cuc-nhanh-867214")                 
+                         img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:300:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tecno-spark-go-1-home.jpg")
+                       
+                      .inner-title-blog Đánh giá chi tiết Samsung Galaxx
+            .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
+                    .blog-item 
+                      .inner-image-blog
+                        a(href="https://www.thegioididong.com/tin-tuc/5-cach-tim-kiem-bai-hat-dua-tren-giai-dieu-cuc-nhanh-867214")                 
+                         img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:300:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tecno-spark-go-1-home.jpg")
+                       
+                      .inner-title-blog Đánh giá chi tiết Samsung Galaxy
     script(src="/js/home.js") 

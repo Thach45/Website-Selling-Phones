@@ -6,6 +6,10 @@ sider.sider
             li 
              if(role.permissions.includes('rolelistproduct'))
                 a(href="/admin/products") Danh sách sản phẩm 
+            li
+                a(href="/admin/news/discount") Quản lý tin khuyến mãi 
+            li
+                a(href="/admin/news/blog") Quản lý tin tức
             li 
              if(role.permissions.includes('rolecategoryproduct'))
                 a(href="/admin/products-categogy") Danh mục sản phẩm 
@@ -18,3 +22,4 @@ sider.sider
             li
              if(role.permissions.includes('rolepermission'))
                 a(href="/admin/account") Danh sách tài khoản 
+            

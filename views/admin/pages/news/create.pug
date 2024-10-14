@@ -1,0 +1,23 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select.pug
+
+block main 
+    +alert-error(2000)
+    h1(class="mb-4") Thêm mới poster
+    form(
+        action="create",
+        method="post"
+        id="form-create-discount"
+        enctype="multipart/form-data"
+    ) 
+        div(class="form-group", upload-img)
+            label(for="thumbnail") Ảnh 
+            input(type="file", upload-img-input ,class="form-control-file", id="thumbnail", name="thumbnail", accept="image/*") 
+            img(src="", input-img-preview)
+        div(class="form-group")
+            button(
+                type="submit"
+                class="btn btn-primary"
+            ) Tạo mới
+    srcipt(link="/admin/js/script.js")
