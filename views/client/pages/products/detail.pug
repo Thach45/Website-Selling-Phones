@@ -1,15 +1,30 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 block main 
+ link(rel="stylesheet" href="/css/detail.css")
  .container(style="display: flex")
     .product-card.col-5
-      img(src=product.thumbnail alt="Tên sản phẩm")
+      img(src=product.thumbnail alt="Tên sản phẩm") 
+      
+     
+    .discription-product.col-7
       h2 #{product.title}
-      p.price #{product.price}$
-      if discount
-        p.discounted-price Giảm giá: #{product.discountPercentage}
+      .status-container(style="display: flex;")
+        i.mr-10(style="margin-right: 10px;") Trạng thái:
+        if product.stock > 0
+          p.stock  Còn hàng
+        else
+          p.stock  Hết hàng
+      if product.discountPercentage
+          i.mb-3.btn.btn-danger Giảm giá #{product.discountPercentage}%
+          p.discounted-price Giá cũ #{product.price}$
+      
+      p.price Giá:  #{Math.round(product.price - (product.price * product.discountPercentage / 100))}$
       form(action=`/cart/add/${product.id}` method="post")
-        input(type="number" class="form-control mb-2" name="quantity" value="1", min="1", max= product.stock)
-        button(type="submit", class="btn btn-success btn-block") Thêm vào giỏ hàng
-    .discription-product.col-6
+       .buy-product
+        input(type="number" class="form-control mb-2 d-none" name="quantity" value="1", min="1", max= product.stock)
+        button.icon-cart.bi.bi-cart4(type="submit", class="btn btn-success btn-block") Thêm vào giỏ hàng
+        a(class="btn btn-success btn-block", href="tel:037227881") Liên hệ hỗ trợ
+        
+      p.text-center.infor-title Thông tin sản phẩm:
       p #{product.description}

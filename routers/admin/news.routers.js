@@ -13,8 +13,10 @@ router.post('/discount/create', upload.single('thumbnail'),uploadOnline.upload, 
 router.post("/discount/delete/:id", newsController.discountDelete);
 
 
-// router.get('/blog',account.create);
-// router.post('/blog', upload.single('thumbnail'),uploadOnline.upload, newsController.discountP);
+router.get('/blog',newsController.blog);
+router.get('/blog/create', newsController.blogCreate);
+router.post('/blog/create', upload.single('thumbnail'),uploadOnline.upload, newsController.blogP);
+router.post("/blog/delete/:id", newsController.blogDelete);
 
 
 

@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
-var slug = require('mongoose-slug-updater');
-mongoose.plugin(slug);
+const moment = require("moment-timezone");
 const blogSchema = new mongoose.Schema({
-    title: String,
+    link: String,
     description: String,
-    slug: { type: String, slug: "title", unique: true },
     thumbnail: String,
-    status: String,
-    deleted: Boolean
+    deleted: Boolean,
+    created: { type: Date,  default: () => moment().format('YYYY-MM-DD HH:mm:ss')  }
 })
 const Blog = mongoose.model("Blog", blogSchema, "blog")
 module.exports = Blog 

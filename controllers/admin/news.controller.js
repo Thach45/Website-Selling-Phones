@@ -33,7 +33,7 @@ module.exports.discountP = async (req, res) => {
         const {thumbnail} = req.body;
         req.body.deleted = false;
         if (!thumbnail) {
-            res.render("client/error/index.pug/")
+            res.render("error/index.pug")
             return;
         }
         const discount = new Discount(req.body);
@@ -41,7 +41,7 @@ module.exports.discountP = async (req, res) => {
         res.redirect("/admin/news/discount");
     }
     catch(err){
-        res.render("client/error/index.pug/")
+        res.render("error/index.pug")
     }
 }
 
@@ -51,6 +51,58 @@ module.exports.discountDelete = async (req, res) => {
         await Discount.deleteOne({ _id: itemDelete });
         res.redirect("/admin/news/discount");
     } catch (err) {
-        res.render("client/error/index.pug/")
+        res.render("error/index.pug")
+    }
+}
+
+module.exports.blog = async (req, res) => {
+    try {
+        const blogs = await Blog.find({ deleted: false });
+        // Định dạng ngày tháng theo múi giờ Việt Nam
+        const formattedBlogs = blogs.map(blog => ({
+            ...blog.toObject(),
+            created: moment(blog.created).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD')
+        }));
+        res.render("admin/pages/blog/index.pug", {
+            pageTitle: "Blog",
+            blogs: formattedBlogs
+        });
+    } catch (err) {
+        res.render("error/index.pug")
+    }
+}
+
+module.exports.blogCreate = async (req, res) => {
+
+    res.render("admin/pages/blog/create.pug", {
+        pageTitle: "Tạo blog"
+
+    })
+}
+
+module.exports.blogP = async (req, res) => {
+    try{
+        const {thumbnail} = req.body;
+        req.body.deleted = false;
+        if (!thumbnail) {
+            res.render("error/index.pug")
+            return;
+        }
+        const blog = new Blog(req.body);
+        await blog.save();
+        res.redirect("/admin/news/blog");
+    }
+    catch(err){
+        res.render("error/index.pug")
+    }
+}
+
+module.exports.blogDelete = async (req, res) => {
+    const itemDelete = req.params.id
+    try {
+        await Blog.deleteOne({ _id: itemDelete });
+        res.redirect("/admin/news/blog");
+    } catch (err) {
+        res.render("error/index.pug")
     }
 }
