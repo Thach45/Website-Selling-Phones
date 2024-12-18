@@ -1,3 +1,24 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Top Home Styles */
 .mySlides {display:none;}
 .top-home{
     align-items: center;
@@ -9,39 +30,77 @@
     border-radius: 10px;
     
 }
-.product-item{
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-.product-outstanding{
-    padding: 20px;
-    border-radius: 10px;
-
-}
-/* .news-list{
-    padding: 20px;
-    border-radius: 10px;
+  /* Box Head Styles */
+  .box-head {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+  }
+  
+  .box-head h2 {
+    font-size: 24px;
+    color: var(--primary-color);
+  }
+  
+  /* News and Blog Styles */
+  .news-list, .blog-list {
     display: flex;
-    justify-content: space-between;
-
-} */
-
-.news-item img{
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+  
+  .news-item, .blog-item {
+    flex: 0 0 calc(25% - 20px);
+    margin: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  .inner-image-blog img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.inner-image-blog img{
-    width: 100%;
-    max-height: 165px;
-    height: auto;
-    border-radius: 10px;
-
-}
-
-
-.inner-title-blog{
-    font-size: 16px;
-    padding: 10px 0px;
-}
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .inner-title-blog {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  /* Button Styles */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .product-item {
+      flex: 0 0 calc(25% - 20px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-item, .news-item, .blog-item {
+      flex: 0 0 calc(33.333% - 20px);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .product-item, .news-item, .blog-item {
+      flex: 0 0 calc(50% - 20px);
+    }
+  }
+  
+  
