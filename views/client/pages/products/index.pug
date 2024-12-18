@@ -1,24 +1,135 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 block main 
- 
+  - const categories = [{ name: 'Điện Thoại', href: '/dien-thoai', icon: 'fas fa-mobile-alt' },{ name: 'Máy Tính', href: '/may-tinh', icon: 'fas fa-desktop' },{ name: 'Tablet', href: '/tablet', icon: 'fas fa-tablet-alt' },{ name: 'Phụ Kiện', href: '/phu-kien', icon: 'fas fa-headphones' },{ name: 'Laptop', href: '/lap-top', icon: 'fas fa-laptop' }]
     .container 
         .row 
-            .col-12
-                +box-head("Danh sách sản phẩm")
-        .row 
-             each item in products
-                .col-3.mb-3
-                    .product-item 
-                        if item.featured
-                                .inner-featured Nổi Bật
-                        .inner-image
-                            img(src=item.thumbnail)
-                        .inner-content 
-                            div
-                                .inner-title #{item.title}
-                            .inner-price-new #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
-                            .inner-price-old #{item.price}$
-                            .inner-discount #{item.discountPercentage}% 
-                            .inner-button 
-                                a(href=`/products/detail/${item.slug}`) Xem chi tiết
+            .category-menu.my-4
+                ul.category-list.flex.justify-between.items-center
+                    each category in categories
+                        li.category-item.transition-all(class="hover:scale-105")
+                            a.category-link(href=category.href) 
+                                .flex.flex-col.items-center
+                                    i(class=category.icon)
+                                    span.mt-1 #{category.name}
+
+
+
+
+                        
+        .row
+          .col-3
+            .sidebar
+                .sidebar-section
+                    .flex.justify-between
+                        .sidebar-title Thương Hiệu
+                        b.bi.bi-chevron-compact-down
+
+                    .checkbox-item
+                    input.mr-2#apple(type='checkbox')
+                    label(for='apple') Apple
+                    .checkbox-item
+                    input.mr-2#samsung(type='checkbox')
+                    label(for='samsung') Samsung
+                    .checkbox-item
+                    input.mr-2#xiaomi(type='checkbox')
+                    label(for='xiaomi') Xiaomi
+                    .checkbox-item
+                    input.mr-2#oppo(type='checkbox')
+                    label(for='oppo') OPPO
+                .sidebar-section
+                    .flex.justify-between
+                        .sidebar-title Mức Giá
+                        i.bi.bi-chevron-compact-down
+                    .price-range
+                    .priceFilterWrapper.flex.flex-col.gap-3
+                    .flex
+                        .relative
+                        div
+                            .TextField_wrapperInput__7jAYN.TextField_small__i2ghd
+                            input.w-full.text-right(class='pr-[33px] minPrice' placeholder='' autocomplete='off' id=':r3:' maxlength='9' type='text' value='20')
+                        
+                        span.flex.items-center.px-1 ~
+                        .relative
+                        div
+                            .TextField_wrapperInput__7jAYN.TextField_small__i2ghd.pl-1
+                            input.w-full.text-right(class='pr-[33px] maxPrice' placeholder='' autocomplete='off' id=':r4:' maxlength='9' type='text' value='79.000')
+                        
+                    .px-2(class='pb-1.5 mb:mx-0.5')
+                        .rc-slider.rc-slider-horizontal
+                        .rc-slider-rail
+                        .rc-slider-track.rc-slider-track-1(style='left: 0%; width: 100%; background-color: var(--neutral-gray-7);')
+                        .rc-slider-step
+                        .rc-slider-handle.rc-slider-handle-1(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='0' aria-disabled='false' aria-orientation='horizontal' style='left: 0%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
+                        .rc-slider-handle.rc-slider-handle-2(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='100' aria-disabled='false' aria-orientation='horizontal' style='left: 100%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
+
+                .sidebar-section
+                    .flex.justify-between
+                        .sidebar-title Dung Lượng Pin
+                        i.bi.bi-chevron-compact-down
+                    .checkbox-item
+                    input.mr-2#battery-4000(type='checkbox')
+                    label(for='battery-4000') Tr&ecirc;n 4000 mAh
+                    .checkbox-item
+                    input.mr-2#battery-5000(type='checkbox')
+                    label(for='battery-5000') Tr&ecirc;n 5000 mAh
+                .sidebar-section
+                    .flex.justify-between
+                        .sidebar-title Màn hình
+                        i.bi.bi-chevron-compact-down
+                    .checkbox-item
+                    input.mr-2#screen-6(type='checkbox')
+                    label(for='screen-6') D&#x1B0;&#x1EDB;i 6 inch
+                    .checkbox-item
+                    input.mr-2(type='checkbox' id='screen-6-6.5')
+                    label(for='screen-6-6.5') 6 - 6.5 inch
+                    .checkbox-item
+                    input.mr-2(type='checkbox' id='screen-over-6.5')
+                    label(for='screen-over-6.5') Tr&ecirc;n 6.5 inch
+
+          .col-9
+            .row
+                .sort-container
+                            label(for='sort-select') S&#x1EAF;p X&#x1EBF;p:
+                            select#sort-select.sort-select
+                                option(value='default') M&#x1EB7;c &Dstrok;&#x1ECB;nh
+                                option(value='price-asc') Gi&aacute; Th&#x1EA5;p &Dstrok;&#x1EBF;n Cao
+                                option(value='price-desc') Gi&aacute; Cao &Dstrok;&#x1EBF;n Th&#x1EA5;p
+                                option(value='discount') Khuy&#x1EBF;n M&atilde;i Nhi&#x1EC1;u Nh&#x1EA5;t
+            .row
+                .products-container.mb-5
+                  each item in products
+                    a(href=`/products/detail/${item.slug}`)
+                        .product-card.my-1
+                            .product-badge N&#x1ED5;i b&#x1EAD;t
+                            img.product-image(src=item.thumbnail alt='Sản phẩm')
+                            .product-details
+                                h2.product-title #{item.title}
+                                .product-highlights
+                                | &bull; Chip A17 Pro m&#x1EA1;nh m&#x1EBD;
+                                | &bull; Camera 48MP
+                                | &bull; Pin 4422mAh
+                                .product-price-container
+                                span.product-price-old #{item.price}$
+                                span.product-price-new #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
+                                span.product-discount #{item.discountPercentage}%
+                                form(action=`/cart/add/${item.id}` method="post")
+                                input(type="number" class="form-control mb-2 d-none" name="quantity" value="1", min="1")
+                                button(type="submit").add-to-cart.my-2 Thêm vào giỏ hàng
+
+
+
+                //- .col-3.mb-3
+                //-     .product-item 
+                //-         if item.featured
+                //-                 .inner-featured Nổi Bật
+                //-         .inner-image
+                //-             img(src=item.thumbnail)
+                //-         .inner-content 
+                //-             div
+                //-                 .inner-title #{item.title}
+                //-             .inner-price-new #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
+                //-             .inner-price-old #{item.price}$
+                //-             .inner-discount #{item.discountPercentage}% 
+                //-             .inner-button 
+                //-                 a(href=`/products/detail/${item.slug}`) Xem chi tiết

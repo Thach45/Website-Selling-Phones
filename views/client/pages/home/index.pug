@@ -1,54 +1,79 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 block main 
-  link(rel="stylesheet" href="/css/home.css")
-  
-  .container 
-    .top-home
-        .main-content.section
-          img.mySlides(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/watch-gt-5-series-03-10-home-new-new.jpg" )
-          img.mySlides(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tecno-spark-go-1-home.jpg" )
-          img.mySlides(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/tai-nghe-sony-wf-c510-home.jpg" )
-    .row 
-      .col-12
-        +box-head("Sản Phẩm Nổi Bật")
-    .row.product-outstanding
-      each item,index in products
-        .col-2.mb-4(data-aos="fade-up" data-aos-duration="3000")
-          .product-item 
-            .inner-image
-              img(src=item.thumbnail)
-            .inner-content 
-              a(href=`products/detail/${item.slug}`) 
-                .inner-title #{item.title} 
-              .inner-price-new #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
-              .inner-price-old #{item.price}$
-              .inner-discount #{item.discountPercentage}%
-    .row
-        if products.length > 3
-            .col-12.text-center.mb-3
-                a(href="/products") 
-                    button.btn.btn-success.btn-lg.btn-block Xem Thêm
-        
-    .row.news-discount
-        .row.mb-3
-            +box-head("Tin Khuyến Mãi")
-        .row.news-list
-         each item in discounts
-            .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
-                    .news-item 
-                        .inner-image
-                        img(src=item.thumbnail)
 
-    .row.blog-news.mt-4
-        .row.mb-3
-            +box-head("Tin Tức Công Nghệ")
-        .row.blog-list
-          each item in blogs
-            .col-3.mb-4(data-aos="fade-up" data-aos-duration="1000")
-                    .blog-item 
-                      .inner-image-blog
-                        a(href=item.link)                 
-                         img(src=item.thumbnail)
-                      .inner-title-blog #{item.description}
-    script(src="/js/home.js") 
+  
+  section.relative.bg-cover.bg-center(class='h-[500px]' style="background-image: url('https://images.unsplash.com/photo-1556656793-08538906a9f8')")
+    .absolute.inset-0.bg-black.bg-opacity-50
+    .relative.container.mx-auto.px-4.h-full.flex.items-center
+      .text-white.max-w-2xl
+        h1.text-5xl.font-bold.mb-6 Latest Smartphones
+        p.text-xl.mb-8 Discover amazing deals on top brands
+        a.bg-blue-600.text-white.px-8.py-3.rounded-lg.text-lg.font-semibold(class='hover:bg-blue-700' href="/products") Shop Now
+  section.container.mx-auto.px-4.py-12
+    .flex.flex-col.gap-8(class='md:flex-row')
+      aside.w-full.space-y-6(class='md:w-64')
+        .bg-white.p-6.rounded-lg.shadow
+          h3.font-semibold.text-lg.mb-4 Brands
+          .space-y-2
+            label.flex.items-center.space-x-2
+              input.rounded.text-blue-600(type='checkbox')
+              span Apple
+            label.flex.items-center.space-x-2
+              input.rounded.text-blue-600(type='checkbox')
+              span Samsung
+            label.flex.items-center.space-x-2
+              input.rounded.text-blue-600(type='checkbox')
+              span Google
+        .bg-white.p-6.rounded-lg.shadow
+          h3.font-semibold.text-lg.mb-4 Price Range
+          select.w-full.p-2.border.rounded
+            option $0 - $500
+            option $501 - $1000
+            option $1001+
+      .flex-1.grid.grid-cols-1.gap-6(class='md:grid-cols-2 lg:grid-cols-3')
+          each item, index in products
+            if(item.stock > 1 && index < 5)
+              .bg-white.rounded-lg.shadow-md.overflow-hidden
+                img.w-full.h-64.object-cover(src=item.thumbnail alt=item.title)
+                .p-6
+                  h3.text-xl.font-semibold.mb-2 #{item.title} 
+                  p.text-gray-600.mb-4 #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
+                  form(action=`/cart/add/${item.id}` method="post")
+                    input(type="number" class="form-control mb-2 d-none" name="quantity" value="1", min="1")
+                    button.w-full.bg-blue-600.text-white.py-2.rounded-lg(class='hover:bg-blue-700' type="submit") Add to Cart
+              
+          
+    .max-w-7xl.px-3.py-16.bg-white.mt-6.rounded-lg.shadow
+      h2.text-3xl.font-bold.text-center.mb-12 Customer Reviews
+      .grid.grid-cols-1.gap-8(class='md:grid-cols-3')
+        // Review 1
+        .bg-white.p-6.rounded-lg.shadow-md
+          .flex.text-yellow-400.mb-2
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+          p.text-gray-600.mb-4 &quot;Amazing phone! The camera quality is outstanding.&quot;
+          p.font-bold - John Doe
+        // Review 2
+        .bg-white.p-6.rounded-lg.shadow-md
+          .flex.text-yellow-400.mb-2
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+          p.text-gray-600.mb-4 &quot;Great battery life and stunning display!&quot;
+          p.font-bold - Jane Smith
+        // Review 3
+        .bg-white.p-6.rounded-lg.shadow-md
+          .flex.text-yellow-400.mb-2
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+          p.text-gray-600.mb-4 &quot;Best purchase I&apos;ve made this year!&quot;
+          p.font-bold - Mike Johnson
