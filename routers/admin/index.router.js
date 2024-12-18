@@ -20,9 +20,4 @@ module.exports = (app) => {
     app.use(pathAdmin + '/account',checkUser.checkAuth , account);
     app.use(pathAdmin + '/auth', auth);
     app.use(pathAdmin + '/news', checkUser.checkAuth, news);
-
-
-
-
-
 }
