@@ -5,7 +5,6 @@ module.exports.cartID = async (req, res, next) => {
     try {
         if (req.cookies.tokenUser) {
             const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
-
             if (!user.cartID) {
                 var cartID = new Cart({ userID: user._id });
                 await cartID.save();
@@ -15,9 +14,9 @@ module.exports.cartID = async (req, res, next) => {
                 });
                 user.cartID = cartID.id;
                 await user.save(); // Lưu user sau khi cập nhật cartID
-                console.log(user.cartID);
+                
             } else {
-                const cartID = req.cookies.cartID;
+                const cartID = user.cartID;
                 const cart = await Cart.findOne({ _id: cartID });
                 if (cart) {
                     cart.total = cart.products.reduce((total, item) => total + item.quantity, 0);

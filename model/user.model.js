@@ -13,6 +13,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "active"
     },
+    cartID: String,
+    
     deleted:{
         type: Boolean,
         default: false

@@ -1,15 +1,15 @@
 const Product = require("../../model/product.model");
-const Category = require("../../model/categogy.model");
 const Cart = require("../../model/cart.model");
+const User = require("../../model/user.model");
 
 module.exports.index = async (req, res) => {
     try{
-
+        const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
         // Lấy id sản phẩm từ tham số của yêu cầu
         const idProduct = req.params.id;
 
         // Lấy id người dùng từ cookie
-        const idUser = req.cookies.cartID;
+        const idUser = user.cartID;
 
         // Chuyển đổi số lượng từ chuỗi sang số nguyên
         const quantity = parseInt(req.body.quantity);
@@ -49,8 +49,8 @@ module.exports.index = async (req, res) => {
 
 module.exports.showCart = async (req, res) => {
     try{
-
-        const idUser = req.cookies.cartID;
+        const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
+        const idUser = user.cartID;
         const cart = await Cart.findOne({ _id: idUser })
         for (const item of cart.products) {
             const productID = item.productId;
@@ -72,7 +72,8 @@ module.exports.showCart = async (req, res) => {
 module.exports.removeProduct = async (req, res) => {
     try{
         const idProduct = req.params.id;
-        const idUser = req.cookies.cartID;
+        const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
+        const idUser = user.cartID;
 
         // Xóa sản phẩm khỏi giỏ hàng của người dùng
         await Cart.updateOne(
@@ -90,7 +91,8 @@ module.exports.updateQuantity = async (req, res) => {
     try{
 
         const idProduct = req.params.id;
-        const idUser = req.cookies.cartID;
+        const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
+        const idUser = user.cartID;
         const quantity = parseInt(req.body.quantity);
 
         // Cập nhật số lượng sản phẩm trong giỏ hàng
