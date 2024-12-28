@@ -1,0 +1,78 @@
+mixin categogy_detail(product)
+    ul
+        if(product.type === 'laptop')
+          li CPU: #{product.processor_laptop}
+          li RAM: #{product.ram_laptop}
+          li Bộ nhớ: #{product.storage_laptop}
+          li Card đồ họa: #{product.graphic_card_laptop}
+          li Pin: #{product.battery_life_laptop}
+          li Màu sắc: #{product.color_laptop}
+          li Trọng lượng: #{product.weight_laptop}
+        if(product.type === 'smartphone')
+          li CPU: #{product.processor_smartphone}
+          li Màn hình: #{product.display_smartphone}
+          li Camera trước: #{product.camera_front_smartphone}
+          li Camera sau: #{product.camera_back_smartphone}
+          li Pin: #{product.battery_smartphone}
+          li Màu sắc: #{product.color_smartphone}
+          li Trọng lượng: #{product.weight_smartphone}
+        if(product.type === 'tablet')
+          li CPU: #{product.processor_tablet}
+          li Màn hình: #{product.display_tablet}
+          li Camera trước: #{product.camera_front_tablet}
+          li Camera sau: #{product.camera_back_tablet}
+          li Pin: #{product.battery_tablet}
+          li Màu sắc: #{product.color_tablet}
+          li Trọng lượng: #{product.weight_tablet}
+        if(product.type === 'accessory')
+          li Màu sắc: #{product.color_accessory}
+        if(product.type === 'pc')
+          li CPU: #{product.processor_pc}
+          li RAM: #{product.ram_pc}
+          li Bộ nhớ: #{product.storage_pc}
+          li Card đồ họa: #{product.graphic_card_pc}
+          li Mainboard: #{product.mainboard_pc}
+          li Nguồn điện: #{product.power_supply_pc}
+
+mixin categogy_list(product)
+  div.flex.gap-1.flex-wrap
+    ul.flex-1.space-y-1
+      if product.type === 'laptop'
+        li CPU: #{product.processor_laptop}
+        li RAM: #{product.ram_laptop}
+        li Trọng lượng: #{product.weight_laptop}
+        
+      if product.type === 'smartphone'
+        li CPU: #{product.processor_smartphone}
+        li Camera trước: #{product.camera_front_smartphone}
+        li Camera sau: #{product.camera_back_smartphone}
+      if product.type === 'tablet'
+        li CPU: #{product.processor_tablet}
+        li Camera trước: #{product.camera_front_tablet}
+        li Camera sau: #{product.camera_back_tablet}
+      if product.type === 'accessory'
+        li Màu sắc: #{product.color_accessory}
+        li Số lượng: #{product.stock}
+        li Giảm giá: #{product.discountPercentage}%
+
+      if product.type === 'pc'
+        li CPU: #{product.processor_pc}
+        li RAM: #{product.ram_pc}
+        li Card đồ họa: #{product.graphic_card_pc}
+       
+    ul.flex-1.space-y-1
+      if product.type === 'laptop'
+        li Bộ nhớ: #{product.storage_laptop}
+        li Card đồ họa: #{product.graphic_card_laptop}
+      if product.type === 'smartphone'
+        li Màn hình: #{product.display_smartphone}
+        li Pin: #{product.battery_smartphone}
+        li Màu sắc: #{product.color_smartphone}
+      if product.type === 'tablet'
+        li Màn hình: #{product.display_tablet}
+        li Pin: #{product.battery_tablet}
+        li Màu sắc: #{product.color_tablet}
+      if product.type === 'pc'
+        li Bộ nhớ: #{product.storage_pc}
+        li Mainboard: #{product.mainboard_pc}
+        li Nguồn điện: #{product.power_supply_pc}

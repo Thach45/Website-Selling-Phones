@@ -33,7 +33,7 @@ module.exports.index = async (req, res) => {
     //Chức năng phân trang
     let pagination = {
         current: 1,
-        limitPage: 2
+        limitPage: 8,
     }
     if (req.query.page) {
         pagination.current = parseInt(req.query.page);
@@ -170,6 +170,7 @@ module.exports.createP = async (req, res) => {
         req.body.position = parseInt(req.body.position)
     }
     req.body.deleted = false;
+    console.log(req.body)
     const product = new Product(req.body);
     await product.save()
     res.redirect("/admin/products")

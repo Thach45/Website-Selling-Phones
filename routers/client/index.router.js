@@ -18,7 +18,6 @@ const user = require("./user.routers");
 module.exports = (app) => {
     // Sử dụng middleware để kiểm tra và tạo cartID nếu chưa có
     app.use(cart.cartID);
-    app.use(useMiddleware.checkInfor);
     // Định tuyến cho trang chủ với middleware xử lý danh mục con
     app.use('/',subMenuMidlleware.category,homeRouters );
     // Định tuyến cho trang sản phẩm với middleware xử lý danh mục con
@@ -26,10 +25,10 @@ module.exports = (app) => {
     // Định tuyến cho trang tìm kiếm với middleware xử lý danh mục con
     app.use('/search', subMenuMidlleware.category, searchRouters);
     // Định tuyến cho trang giỏ hàng với middleware xử lý danh mục con
-    app.use('/cart', subMenuMidlleware.category, cartRouters);
+    app.use('/cart',useMiddleware.checkInfor ,subMenuMidlleware.category, cartRouters);
 
-    app.use("/checkout", subMenuMidlleware.category,checkoutRouters);
-    app.use("/user", subMenuMidlleware.category,user);
+    app.use("/checkout",useMiddleware.checkInfor ,subMenuMidlleware.category,checkoutRouters);
+    app.use("/user",subMenuMidlleware.category,user);
 
 
 }

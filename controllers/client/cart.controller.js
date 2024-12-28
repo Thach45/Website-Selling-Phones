@@ -43,7 +43,7 @@ module.exports.index = async (req, res) => {
         res.redirect("back");
     }
     catch(error){
-        res.rerender("client/error/index.pug")
+        res.render("error/index.pug")
     }
 }
 
@@ -64,7 +64,7 @@ module.exports.showCart = async (req, res) => {
         })
     }
     catch(error){
-        res.rerender("client/error/index.pug")
+        res.render("error/index.pug")
     }
 }
 
@@ -82,7 +82,7 @@ module.exports.removeProduct = async (req, res) => {
         res.redirect("back");
     }
     catch(error){
-        res.rerender("client/error/index.pug")
+        res.render("error/index.pug")
     }
 }
 
@@ -101,6 +101,6 @@ module.exports.updateQuantity = async (req, res) => {
         res.redirect("back");
     }
     catch(error){
-        res.rerender("client/error/index.pug")
+        res.render("error/index.pug")
     }
 }

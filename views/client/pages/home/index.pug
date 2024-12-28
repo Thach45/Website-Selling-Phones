@@ -35,7 +35,7 @@ block main
           each item, index in products
             if(item.stock > 1 && index < 5)
               .bg-white.rounded-lg.shadow-md.overflow-hidden
-                img.w-full.h-64.object-cover(src=item.thumbnail alt=item.title)
+                img.w-full.h-auto.object-cover(src=item.thumbnails[0] alt=item.title)
                 .p-6
                   h3.text-xl.font-semibold.mb-2 #{item.title} 
                   p.text-gray-600.mb-4 #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$

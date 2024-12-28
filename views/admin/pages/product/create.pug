@@ -1,24 +1,133 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 include ../../mixins/select.pug
-block main 
+
+block main
     +alert-error(2000)
-    h1(class="mb-4") Thêm mới sản phẩm 
+    h1(class="mb-4") Thêm mới sản phẩm
     form(
         action="create",
         method="post"
         id="form-create-product"
         enctype="multipart/form-data"
-    ) 
+    )
+        div(class="form-group") 
+            label(for="type") Loại sản phẩm
+            select(name="type", id="type", class="form-control select-type")
+                option(value="") --Chọn loại sản phẩm--
+                option(value="laptop") Laptop
+                option(value="smartphone") Smartphone
+                option(value="tablet") Tablet
+                option(value="pc") PC
+                option(value="accessory") Phụ kiện
+            
         div(class="form-group")
             label(for="title") Tiêu đề
             input(type="text", class="form-control", id="title", name="title", required)
+
         div(class="form-group")
             label(for="parent_id") Danh mục cha
-            select(name="parent_id",id="parent_id",class="form-control")
-                option(value="") --Chọn danh mục-- 
+            select(name="parent_id", id="parent_id", class="form-control")
+                option(value="") --Chọn danh mục--
                 if(records)
-                  +select-item(records) 
+                    +select-item(records)
+
+        div(class="form-group")
+            label(for="brand") Thương hiệu
+            input(type="text", class="form-control", id="brand", name="brand", required)
+
+        div(class="form-group" id="laptop-specs" style="display: none;")
+            label(for="processor") Bộ vi xử lý
+            input(type="text", class="form-control", id="processor", name="processor_laptop")
+
+            label(for="ram") Dung lượng RAM
+            input(type="text", class="form-control", id="ram", name="ram_laptop")
+
+            label(for="storage") Dung lượng bộ nhớ
+            input(type="text", class="form-control", id="storage", name="storage_laptop")
+
+            label(for="battery_life") Pin
+            input(type="text", class="form-control", id="battery_life", name="battery_life_laptop")
+            
+            label(for="graphic_card") Card đồ họa
+            input(type="text", class="form-control", id="graphic_card", name="graphic_card_laptop")
+
+            label(for="display") Màn hình
+            input(type="text", class="form-control", id="display", name="display_laptop")
+
+            label(for="color") Màu sắc
+            input(type="text", class="form-control", id="color", name="color_laptop")
+
+            label(for="weight") Trọng lượng
+            input(type="text", class="form-control", id="weight", name="weight_laptop")
+
+        div(class="form-group" id="smartphone-specs" style="display: none;")
+            label(for="processor") Bộ vi xử lý
+            input(type="text", class="form-control", id="processor", name="processor_smartphone")
+
+            label(for="display") Màn hình
+            input(type="text", class="form-control", id="display", name="display_smartphone")
+
+            label(for="camera_front") Camera trước
+            input(type="text", class="form-control", id="camera", name="camera_front_smartphone")
+
+            label(for="camera_back") Camera sau 
+            input(type="text", class="form-control", id="camera_back", name="camera_back_smartphone")
+
+            label(for="battery_life") Pin
+            input(type="text", class="form-control", id="battery_life", name="battery_smartphone")
+
+            label(for="color") Màu sắc
+            input(type="text", class="form-control", id="color", name="color_smartphone")
+
+            label(for="weight") Trọng lượng
+            input(type="text", class="form-control", id="weight", name="weight_smartphone")
+        div(class="form-group" id="tablet-specs" style="display: none;")
+            label(for="processor") Bộ vi xử lý
+            input(type="text", class="form-control", id="processor", name="processor_tablet")
+
+            label(for="display") Màn hình
+            input(type="text", class="form-control", id="display", name="display_tablet")
+
+            label(for="camera_front") Camera trước
+            input(type="text", class="form-control", id="camera", name="camera_front_tablet")
+
+            label(for="camera_back") Camera sau 
+            input(type="text", class="form-control", id="camera_back", name="camera_back_tablet")
+
+            label(for="battery_life") Pin
+            input(type="text", class="form-control", id="battery_tablet", name="battery_tablet")
+
+            label(for="color") Màu sắc
+            input(type="text", class="form-control", id="color", name="color_tablet")
+
+            label(for="weight") Trọng lượng
+            input(type="text", class="form-control", id="weight", name="weight_tablet")
+
+        div(class="form-group" id="accessory-specs" style="display: none;")
+            label(for="color") Màu sắc
+            input(type="text", class="form-control", id="color", name="color_accessory")
+
+        div(class="form-group" id="pc-specs" style="display: none;")
+            label(for="processor") Bộ vi xử lý
+            input(type="text", class="form-control", id="processor", name="processor_pc")
+
+            label(for="ram") Dung lượng RAM
+            input(type="text", class="form-control", id="ram", name="ram_pc")
+
+            label(for="storage") Dung lượng bộ nhớ
+            input(type="text", class="form-control", id="storage", name="storage_pc")
+
+            label(for="graphic_card") Card đồ họa
+            input(type="text", class="form-control", id="graphic_card", name="graphic_card_pc")
+
+            label(for="mainboard") Mainboard 
+            input(type="text", class="form-control", id="mainboard", name="mainboard_pc")
+
+            label(for="power_supply") Nguồn 
+            input(type="text", class="form-control", id="power_supply", name="power_supply_pc") 
+
+            
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
@@ -26,9 +135,10 @@ block main
                 id="featured1"
                 name="featured"
                 value="1"
-                checked  
+                checked
             )
-            label(for="statusActive", class="form-check-label") Nổi bật
+            label(for="featured1", class="form-check-label") Nổi bật
+
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
@@ -36,28 +146,45 @@ block main
                 id="featured0"
                 name="featured"
                 value="0"
-                checked  
             )
-            label(for="statusInactive", class="form-check-label") Không nổi bật
+            label(for="featured0", class="form-check-label") Không nổi bật
+
         div(class="form-group")
             label(for="desc") Mô tả
-            textarea(name="description", row="5", class="form-control", id="desc")
+            textarea(name="description", rows="5", class="form-control", id="desc")
+
         div(class="form-group")
-            label(for="price") Giá 
-            input(type="number", class="form-control", id="price", name="price", value="0", min="0")       
+            label(for="price") Giá
+            input(type="number", class="form-control", id="price", name="price", value="0", min="0")
+
         div(class="form-group")
-            label(for="discount") Giảm giá 
-            input(type="number", class="form-control", id="discount", name="discountPercentage", value="0", min="0") 
+            label(for="discount") Giảm giá
+            input(type="number", class="form-control", id="discount", name="discountPercentage", value="0", min="0")
+
         div(class="form-group")
-            label(for="stock") Số lượng   
-            input(type="number", class="form-control", id="stock", name="stock", value="0", min="0") 
-        div(class="form-group", upload-img)
-            label(for="thumbnail") Ảnh 
-            input(type="file", upload-img-input ,class="form-control-file", id="thumbnail", name="thumbnail", accept="image/*") 
-            img(src="", input-img-preview)
+            label(for="stock") Số lượng
+            input(type="number", class="form-control", id="stock", name="stock", value="0", min="0")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh chính
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+
         div(class="form-group")
-            label(for="position") Vị trí 
+            label(for="position") Vị trí
             input(type="number", class="form-control", id="position", name="position", min="1")
+
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
@@ -65,23 +192,21 @@ block main
                 id="statusActive"
                 name="status"
                 value="active"
-                checked  
+                checked
             )
-            label(for="statusActive", class="form-check-label") Hoạt động 
+            label(for="statusActive", class="form-check-label") Hoạt động
+
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
                 class="form-check-input"
                 id="statusInactive"
                 name="status"
-                value="active"
-                checked  
+                value="inactive"
             )
-            label(for="statusInactive", class="form-check-label") Không hoạt động   
-    
+            label(for="statusInactive", class="form-check-label") Không hoạt động
+
         div(class="form-group")
-            button(
-                type="submit"
-                class="btn btn-primary"
-            ) Tạo mới
-    srcipt(link="/admin/js/script.js")
+            button(type="submit", class="btn btn-primary") Tạo mới
+
+    script(src="/admin/js/product.js")

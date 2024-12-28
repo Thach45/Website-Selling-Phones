@@ -1,30 +1,199 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/categogy.pug
 block main 
  link(rel="stylesheet" href="/css/detail.css")
- .container(style="display: flex")
-    .product-card.col-5
-      img(src=product.thumbnail alt="Tên sản phẩm") 
-      
+ .container
+  main.product-detail
+    .product-images
+      .main-image
+        img#mainImage(src=product.thumbnails[0] alt='Sản phẩm tuyệt vời')
+      .thumbnail-images
+        each thumbnail in product.thumbnails
+          img.thumbnail(src=thumbnail alt='Thumbnail' onclick='changeImage(this.src)')
      
-    .discription-product.col-7
-      h2 #{product.title}
-      .status-container(style="display: flex;")
-        i.mr-10(style="margin-right: 10px;") Trạng thái:
-        if product.stock > 0
-          p.stock  Còn hàng
-        else
-          p.stock  Hết hàng
-      if product.discountPercentage
-          i.mb-3.btn.btn-danger Giảm giá #{product.discountPercentage}%
-          p.discounted-price Giá cũ #{product.price}$
       
-      p.price Giá:  #{Math.round(product.price - (product.price * product.discountPercentage / 100))}$
-      form(action=`/cart/add/${product.id}` method="post")
-       .buy-product
-        input(type="number" class="form-control mb-2 d-none" name="quantity" value="1", min="1", max= product.stock)
-        button.icon-cart.bi.bi-cart4(type="submit", class="btn btn-success btn-block") Thêm vào giỏ hàng
-        a(class="btn btn-success btn-block", href="tel:037227881") Liên hệ hỗ trợ
+
+    .product-info
+      h1 #{product.title}
+      .rating
+        - var star = Math.round(product.ratings.average);
+        - for (let i = 0; i < star; i++) {
+          span.stars &starf;
+        - }
+ 
+        span.review-count (#{product.ratings.totalReviews} đánh giá)
+      .price-section
+        .price-wrapper
+          span.current-price #{Math.round(product.price - (product.price * product.discountPercentage / 100))} đ
+          span.original-price #{product.price} ₫
+          span.discount-badge -#{product.discountPercentage}%
+      .product-status
+        if product.stock > 0
+          .status.in-stock
+            i.fas.fa-check-circle
+            span Còn hàng
+            span.stock-count (#{product.stock} sản phẩm)
+        else
+          .status.out-of-stock
+            i.fas.fa-times-circle
+            span Hết hàng
         
-      p.text-center.infor-title Thông tin sản phẩm:
+        .delivery-time
+          i.fas.fa-truck
+          span.ml-4 Giao hàng dự kiến: 1-3 ngày
+      
+      .purchase-options
+       
+        form(action=`/cart/add/${product.id}` method="post")
+         .flex
+          input(type="number" class="w-20" name="quantity" value="1", min="1")
+          button(type="submit").btn.btn-primary.m-2 Thêm vào giỏ hàng
+          button.add-to-wishlist &hearts;
+        .policies
+          .policy-item
+            i.fas.fa-shield-alt
+            .policy-content
+              h4 Bảo hành chính hãng
+              p #{product.warranty || '12 tháng'}
+          
+          .policy-item
+            i.fas.fa-exchange-alt
+            .policy-content
+              h4 Đổi trả miễn phí
+              p 30 ngày đầu tiên
+          
+          .policy-item
+            i.fas.fa-truck
+            .policy-content
+              h4 Giao hàng toàn quốc
+              p Miễn phí từ 500.000đ
+        .support-section
+          h3 Cần hỗ trợ?
+          .support-options
+            a.support-chat(href="#")
+              i.fas.fa-comments
+              span Chat với tư vấn viên
+            
+            .support-phone
+              i.fas.fa-phone
+              span Hotline: 1800-XXX-XXX
+  section.product-details
+    .tabs
+      button.tab-button.active(onclick="openTab(event, 'description')") M&ocirc; t&#x1EA3;
+      button.tab-button(onclick="openTab(event, 'specifications')") Th&ocirc;ng s&#x1ED1; k&#x1EF9; thu&#x1EAD;t
+      button.tab-button(onclick="openTab(event, 'reviews')") &Dstrok;&aacute;nh gi&aacute;
+    #description.tab-content.active
       p #{product.description}
+    #specifications.tab-content
+       ul
+        if(product.type === 'laptop')
+          li CPU: #{product.processor_laptop}
+          li RAM: #{product.ram_laptop}
+          li Bộ nhớ: #{product.storage_laptop}
+          li Card đồ họa: #{product.graphic_card_laptop}
+          li Pin: #{product.battery_laptop}
+          li Màu sắc: #{product.color_laptop}
+          li Trọng lượng: #{product.weight_laptop}
+        if(product.type === 'smartphone')
+          li CPU: #{product.processor_smartphone}
+          li Màn hình: #{product.display_smartphone}
+          li Camera trước: #{product.camera_front_smartphone}
+          li Camera sau: #{product.camera_back_smartphone}
+          li Pin: #{product.battery_smartphone}
+          li Màu sắc: #{product.color_smartphone}
+          li Trọng lượng: #{product.weight_smartphone}
+        if(product.type === 'tablet')
+          li CPU: #{product.processor_tablet}
+          li Màn hình: #{product.display_tablet}
+          li Camera trước: #{product.camera_front_tablet}
+          li Camera sau: #{product.camera_back_tablet}
+          li Pin: #{product.battery_tablet}
+          li Màu sắc: #{product.color_tablet}
+          li Trọng lượng: #{product.weight_tablet}
+        if(product.type === 'accessory')
+          li Màu sắc: #{product.color_accessory}
+        if(product.type === 'pc')
+          li CPU: #{product.processor_pc}
+          li RAM: #{product.ram_pc}
+          li Bộ nhớ: #{product.storage_pc}
+          li Card đồ họa: #{product.graphic_card_pc}
+          li Mainboard: #{product.mainboard_pc}
+          li Nguồn điện: #{product.power_supply_pc}
+    #reviews.tab-content
+      .comments-list.comment-card
+        .comment
+          .comment-header
+            span.comment-user Nguy&#x1EC5;n V&abreve;n A
+            span.comment-date 27/12/2024
+          .rating &starf;&starf;&starf;&starf;&starf;
+          p.comment-text S&#x1EA3;n ph&#x1EA9;m r&#x1EA5;t t&#x1ED1;t, &dstrok;&oacute;ng g&oacute;i c&#x1EA9;n th&#x1EAD;n, giao h&agrave;ng nhanh!
+        .comment
+          .comment-header
+            span.comment-user Nguy&#x1EC5;n V&abreve;n A
+            span.comment-date 27/12/2024
+          .rating &starf;&starf;&starf;&starf;&starf;
+          p.comment-text S&#x1EA3;n ph&#x1EA9;m r&#x1EA5;t t&#x1ED1;t, &dstrok;&oacute;ng g&oacute;i c&#x1EA9;n th&#x1EAD;n, giao h&agrave;ng nhanh!
+        .comment
+          .comment-header
+            span.comment-user Nguy&#x1EC5;n V&abreve;n A
+            span.comment-date 27/12/2024
+          .rating &starf;&starf;&starf;&starf;&starf;
+          p.comment-text S&#x1EA3;n ph&#x1EA9;m r&#x1EA5;t t&#x1ED1;t, &dstrok;&oacute;ng g&oacute;i c&#x1EA9;n th&#x1EAD;n, giao h&agrave;ng nhanh!
+      .comment-section
+        form.comment-form
+          .rating-input
+            input#star5(type='radio' name='rating' value='5')
+            label(for='star5') &starf;
+            input#star4(type='radio' name='rating' value='4')
+            label(for='star4') &starf;
+            input#star3(type='radio' name='rating' value='3')
+            label(for='star3') &starf;
+            input#star2(type='radio' name='rating' value='2')
+            label(for='star2') &starf;
+            input#star1(type='radio' name='rating' value='1')
+            label(for='star1') &starf;
+          textarea.comment-input(placeholder='Chia sẻ đánh giá của bạn về sản phẩm...' required='')
+          button.submit-button(type='submit') G&#x1EED;i &dstrok;&aacute;nh gi&aacute;
+      
+
+  section.related-products
+    h2 S&#x1EA3;n ph&#x1EA9;m li&ecirc;n quan
+    .product-grid
+      each product in productRelated
+        a(href=`/products/detail/${product.slug}`)
+          .product-card
+            img(src=product.thumbnails[0] alt=product.title)
+            h3 #{product.title}
+            p.price #{product.price}
+      
+      
+
+
+ script.
+  function changeImage(src) {
+      document.getElementById('mainImage').src = src;
+  }
+
+  function changeQuantity(change) {
+      let quantityInput = document.getElementById('quantity');
+      let newQuantity = parseInt(quantityInput.value) + change;
+      if (newQuantity >= 1) {
+          quantityInput.value = newQuantity;
+      }
+  }
+
+  function openTab(evt, tabName) {
+      let tabContents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.remove("active");
+      }
+
+      let tabButtons = document.getElementsByClassName("tab-button");
+      for (let i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+  }

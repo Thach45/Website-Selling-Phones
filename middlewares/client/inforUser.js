@@ -1,12 +1,17 @@
 const User = require("../../model/user.model");
+
 module.exports.checkInfor = async (req, res, next) => {
-    const token = req.cookies.tokenUser;
-    if(token){
-        const user = await User.findOne({ tokenUser: token }).select("-password");
-        if(user){
-            res.locals.user = user;
+    try {
+        const token = req.cookies.tokenUser;
+        if (token) {
+            const user = await User.findOne({ tokenUser: token }).select("-password");
+            if (user) {
+                res.locals.user = user;
+            }
         }
-        
+        next();
+    } catch (error) {
+        console.error("Error fetching user information:", error);
+        res.status(500).send("Internal Server Error");
     }
-    next();
-}
+};

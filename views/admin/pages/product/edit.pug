@@ -51,10 +51,22 @@ block main
         div(class="form-group")
             label(for="stock") Số lượng   
             input(type="number", value=product.stock ,class="form-control", id="stock", name="stock", min="0") 
-        div(class="form-group", upload-img)
-            label(for="thumbnail") Ảnh 
-            input(type="file", upload-img-input ,class="form-control-file", id="thumbnail", name="thumbnail", accept="image/*") 
-            img(src="", input-img-preview)
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh chính
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
+        div(class="form-group upload-img")
+            label(for="thumbnail") Ảnh phụ
+            input(type="file", class="form-control-file", id="thumbnail", name="thumbnails", accept="image/*")
+            img(src="", id="input-img-preview", style="display: none;")
         div(class="form-group")
             label(for="position") Vị trí 
             input(type="number",value=product.position ,class="form-control", id="position", name="position", min="1")

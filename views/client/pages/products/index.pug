@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/categogy.pug
 block main 
   - const categories = [{ name: 'Điện Thoại', href: '/dien-thoai', icon: 'fas fa-mobile-alt' },{ name: 'Máy Tính', href: '/may-tinh', icon: 'fas fa-desktop' },{ name: 'Tablet', href: '/tablet', icon: 'fas fa-tablet-alt' },{ name: 'Phụ Kiện', href: '/phu-kien', icon: 'fas fa-headphones' },{ name: 'Laptop', href: '/lap-top', icon: 'fas fa-laptop' }]
     .container 
@@ -100,15 +101,14 @@ block main
                 .products-container.mb-5
                   each item in products
                     a(href=`/products/detail/${item.slug}`)
-                        .product-card.my-1
+                        .product-card.my-1.min-h-full
                             .product-badge N&#x1ED5;i b&#x1EAD;t
-                            img.product-image(src=item.thumbnail alt='Sản phẩm')
+                            
+                            img.product-image(src=item.thumbnails[0] alt='Sản phẩm')
                             .product-details
                                 h2.product-title #{item.title}
-                                .product-highlights
-                                | &bull; Chip A17 Pro m&#x1EA1;nh m&#x1EBD;
-                                | &bull; Camera 48MP
-                                | &bull; Pin 4422mAh
+                                .product-highlights.text-xs
+                                   +categogy_list(item)
                                 .product-price-container
                                 span.product-price-old #{item.price}$
                                 span.product-price-new #{Math.round(item.price - (item.price * item.discountPercentage / 100))}$
