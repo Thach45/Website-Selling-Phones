@@ -1,9 +1,10 @@
 const Product = require("../../model/product.model");
-const Category = require("../../model/categogy.model");
+const User = require("../../model/user.model");
 const Cart = require("../../model/cart.model");
 const Order = require("../../model/order.model");
 module.exports.index = async (req, res) => {
-    const idUser = req.cookies.cartID;
+    const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
+    const idUser = user.cartID;
     const cart = await Cart.findOne({ _id: idUser })
     let total = 0;
     for (const item of cart.products) {
@@ -23,8 +24,8 @@ module.exports.index = async (req, res) => {
 
 module.exports.order = async (req, res) => {
     try {
-
-        const cartID = req.cookies.cartID;
+        const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
+        const cartID = user.cartID;
         const userInfor = req.body;
         const cart = await Cart.findOne({ _id: cartID });
         let productCart = [];
@@ -64,6 +65,9 @@ module.exports.success = async (req, res) => {
         total += (item.price * ((100 - item.discount) / 100)) * item.quantity;
     }
     order.total = total;
+    const user = await User.findOne({ cartID: order.cart_id });
+    user.cartID = "";
+    await user.save();
     res.render("client/pages/checkout/success.pug", {
         pageTitle: "Đặt hàng thành công",
         order: order

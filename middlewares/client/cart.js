@@ -8,10 +8,7 @@ module.exports.cartID = async (req, res, next) => {
             if (!user.cartID) {
                 var cartID = new Cart({ userID: user._id });
                 await cartID.save();
-                const time = 1000 * 60 * 60 * 24 * 365;
-                res.cookie("cartID", cartID.id, {
-                    expires: new Date(Date.now() + time),
-                });
+                
                 user.cartID = cartID.id;
                 await user.save(); // Lưu user sau khi cập nhật cartID
                 
@@ -20,6 +17,7 @@ module.exports.cartID = async (req, res, next) => {
                 const cart = await Cart.findOne({ _id: cartID });
                 if (cart) {
                     cart.total = cart.products.reduce((total, item) => total + item.quantity, 0);
+                   
                     res.locals.cart = cart;
                 }
             }

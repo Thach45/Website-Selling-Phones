@@ -44,12 +44,6 @@ block main
           span.ml-4 Giao hàng dự kiến: 1-3 ngày
       
       .purchase-options
-       
-        form(action=`/cart/add/${product.id}` method="post")
-         .flex
-          input(type="number" class="w-20" name="quantity" value="1", min="1")
-          button(type="submit").btn.btn-primary.m-2 Thêm vào giỏ hàng
-          button.add-to-wishlist &hearts;
         .policies
           .policy-item
             i.fas.fa-shield-alt
@@ -78,6 +72,11 @@ block main
             .support-phone
               i.fas.fa-phone
               span Hotline: 1800-XXX-XXX
+        form(action=`/cart/add/${product.id}` method="post")
+         .flex
+          input(type="number" class="w-40 d-none" name="quantity" value="1", min="1")
+          button(type="submit" style="border-radius: 15px; width: 100%; ").btn.btn-danger.m-2.py-3 Thêm vào giỏ hàng
+          button.add-to-wishlist &hearts;
   section.product-details
     .tabs
       button.tab-button.active(onclick="openTab(event, 'description')") M&ocirc; t&#x1EA3;

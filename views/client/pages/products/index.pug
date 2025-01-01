@@ -2,14 +2,14 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/categogy.pug
 block main 
-  - const categories = [{ name: 'Điện Thoại', href: '/dien-thoai', icon: 'fas fa-mobile-alt' },{ name: 'Máy Tính', href: '/may-tinh', icon: 'fas fa-desktop' },{ name: 'Tablet', href: '/tablet', icon: 'fas fa-tablet-alt' },{ name: 'Phụ Kiện', href: '/phu-kien', icon: 'fas fa-headphones' },{ name: 'Laptop', href: '/lap-top', icon: 'fas fa-laptop' }]
+  - const categories = [{ name: 'Điện Thoại', href: '/smartphone', icon: 'fas fa-mobile-alt' },{ name: 'Máy Tính', href: '/pc', icon: 'fas fa-desktop' },{ name: 'Tablet', href: '/tablet', icon: 'fas fa-tablet-alt' },{ name: 'Phụ Kiện', href: '/accessory', icon: 'fas fa-headphones' },{ name: 'Laptop', href: '/laptop', icon: 'fas fa-laptop' }]
     .container 
         .row 
             .category-menu.my-4
                 ul.category-list.flex.justify-between.items-center
                     each category in categories
-                        li.category-item.transition-all(class="hover:scale-105")
-                            a.category-link(href=category.href) 
+                        li.category-item.transition-all(class=`hover:scale-105`)
+                            a.category-link(href=`/products`+category.href)
                                 .flex.flex-col.items-center
                                     i(class=category.icon)
                                     span.mt-1 #{category.name}
@@ -24,69 +24,114 @@ block main
                 .sidebar-section
                     .flex.justify-between
                         .sidebar-title Thương Hiệu
-                        b.bi.bi-chevron-compact-down
-
-                    .checkbox-item
-                    input.mr-2#apple(type='checkbox')
-                    label(for='apple') Apple
-                    .checkbox-item
-                    input.mr-2#samsung(type='checkbox')
-                    label(for='samsung') Samsung
-                    .checkbox-item
-                    input.mr-2#xiaomi(type='checkbox')
-                    label(for='xiaomi') Xiaomi
-                    .checkbox-item
-                    input.mr-2#oppo(type='checkbox')
-                    label(for='oppo') OPPO
+                        b.bi.bi-chevron-compact-down.button-brand.button-rotate
+                    .model-brand.model-show.show
+                        .checkbox-item
+                            input.mr-2#apple(type='checkbox')
+                            label(for='apple') Apple
+                        .checkbox-item
+                            input.mr-2#samsung(type='checkbox')
+                            label(for='samsung') Samsung
+                        .checkbox-item
+                            input.mr-2#xiaomi(type='checkbox')
+                            label(for='xiaomi') Xiaomi
+                        .checkbox-item
+                            input.mr-2#oppo(type='checkbox')
+                            label(for='oppo') OPPO
                 .sidebar-section
                     .flex.justify-between
                         .sidebar-title Mức Giá
-                        i.bi.bi-chevron-compact-down
-                    .price-range
-                    .priceFilterWrapper.flex.flex-col.gap-3
-                    .flex
-                        .relative
-                        div
-                            .TextField_wrapperInput__7jAYN.TextField_small__i2ghd
-                            input.w-full.text-right(class='pr-[33px] minPrice' placeholder='' autocomplete='off' id=':r3:' maxlength='9' type='text' value='20')
-                        
-                        span.flex.items-center.px-1 ~
-                        .relative
-                        div
-                            .TextField_wrapperInput__7jAYN.TextField_small__i2ghd.pl-1
-                            input.w-full.text-right(class='pr-[33px] maxPrice' placeholder='' autocomplete='off' id=':r4:' maxlength='9' type='text' value='79.000')
-                        
-                    .px-2(class='pb-1.5 mb:mx-0.5')
-                        .rc-slider.rc-slider-horizontal
-                        .rc-slider-rail
-                        .rc-slider-track.rc-slider-track-1(style='left: 0%; width: 100%; background-color: var(--neutral-gray-7);')
-                        .rc-slider-step
-                        .rc-slider-handle.rc-slider-handle-1(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='0' aria-disabled='false' aria-orientation='horizontal' style='left: 0%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
-                        .rc-slider-handle.rc-slider-handle-2(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='100' aria-disabled='false' aria-orientation='horizontal' style='left: 100%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
+                        i.bi.bi-chevron-compact-down.button-price.button-rotate
+                    .model-price.model-show.show
+                        .price-range
+                        .priceFilterWrapper.flex.flex-col.gap-3
+                        .flex
+                            .relative
+                            div
+                                .TextField_wrapperInput__7jAYN.TextField_small__i2ghd
+                                input.w-full.text-right(class='pr-[33px] minPrice' placeholder='' autocomplete='off' id=':r3:' maxlength='9' type='text' value='1')
+                            
+                            span.flex.items-center.px-1 ~
+                            .relative
+                            div
+                                .TextField_wrapperInput__7jAYN.TextField_small__i2ghd.pl-1
+                                input.w-full.text-right(class='pr-[33px] maxPrice' placeholder='' autocomplete='off' id=':r4:' maxlength='9' type='text' value='1000')
+                            
+                        .px-2(class='pb-1.5 mb:mx-0.5')
+                            .rc-slider.rc-slider-horizontal
+                            .rc-slider-rail
+                            .rc-slider-track.rc-slider-track-1(style='left: 0%; width: 100%; background-color: var(--neutral-gray-7);')
+                            .rc-slider-step
+                            .rc-slider-handle.rc-slider-handle-1(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='0' aria-disabled='false' aria-orientation='horizontal' style='left: 0%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
+                            .rc-slider-handle.rc-slider-handle-2(tabindex='0' role='slider' aria-valuemin='0' aria-valuemax='100' aria-valuenow='100' aria-disabled='false' aria-orientation='horizontal' style='left: 100%; transform: translateX(-50%); border: 4px solid var(--neutral-gray-7); opacity: 1;')
 
-                .sidebar-section
+                .sidebar-section.battery
                     .flex.justify-between
                         .sidebar-title Dung Lượng Pin
-                        i.bi.bi-chevron-compact-down
-                    .checkbox-item
-                    input.mr-2#battery-4000(type='checkbox')
-                    label(for='battery-4000') Tr&ecirc;n 4000 mAh
-                    .checkbox-item
-                    input.mr-2#battery-5000(type='checkbox')
-                    label(for='battery-5000') Tr&ecirc;n 5000 mAh
-                .sidebar-section
+                        i.bi.bi-chevron-compact-down.button-battery.button-rotate
+                    .model-battery.model-show.show
+                        .checkbox-item
+                            input.mr-2#3000(type='radio' name='battery' value='3000')
+                            label(for='3000') Tr&ecirc;n 3000 mAh
+                        .checkbox-item
+                            input.mr-2#5000(type='radio' name='battery' value='5000')
+                            label(for='5000') Tr&ecirc;n 5000 mAh
+                .sidebar-section.ram.hidden
+                    .flex.justify-between
+                        .sidebar-title RAM
+                        i.bi.bi-chevron-compact-down.button-ram.button-rotate
+                    .model-ram.model-show.show(style="display: flex; flex-wrap: wrap; gap: 12px;")
+                        
+                            .checkbox-item
+                                input.mr-2#screen-6(type='radio' name="ram" value='8')
+                                label(for='6') 8GB  
+                            .checkbox-item
+                                input.mr-2#ram-6(type='radio' name="ram" value='12')
+                                label(for='6') 12GB 
+                            .checkbox-item
+                                input.mr-2(type='radio' id='ram-6-6.5' name="ram" value='16')
+                                label(for='6-6.5') 16GB
+                            .checkbox-item
+                                input.mr-2#ram-6(type='radio' name="ram" value='24')
+                                label(for='6') 24GB 
+                            .checkbox-item
+                                input.mr-2(type='radio' id='ram-over-6.5' name="ram" value='32')
+                                label(for='6.5') 32GB
+                            .checkbox-item
+                                input.mr-2#ram-6(type='radio' name="ram" value='different')
+                                label(for='6') Khác 
+                .sidebar-section.rom.hidden
+                    .flex.justify-between
+                        .sidebar-title Bộ Nhớ Trong
+                        i.bi.bi-chevron-compact-down.button-rom.button-rotate
+                    .model-rom.model-show.show
+                        .checkbox-item
+                            input.mr-2#rom-512(type='radio' name="rom" value='256')
+                            label(for='6') 256 GB
+                        .checkbox-item
+                            input.mr-2#rom-512(type='radio' name="rom" value='512')
+                            label(for='6') 512 GB
+                        .checkbox-item
+                            input.mr-2#rom-512(type='radio' name="rom" value='1024')
+                            label(for='6') 1 TB
+                        .checkbox-item
+                            input.mr-2#rom-512(type='radio' name="rom" value='different')
+                            label(for='6') Khác
+                            
+                .sidebar-section.screen
                     .flex.justify-between
                         .sidebar-title Màn hình
-                        i.bi.bi-chevron-compact-down
-                    .checkbox-item
-                    input.mr-2#screen-6(type='checkbox')
-                    label(for='screen-6') D&#x1B0;&#x1EDB;i 6 inch
-                    .checkbox-item
-                    input.mr-2(type='checkbox' id='screen-6-6.5')
-                    label(for='screen-6-6.5') 6 - 6.5 inch
-                    .checkbox-item
-                    input.mr-2(type='checkbox' id='screen-over-6.5')
-                    label(for='screen-over-6.5') Tr&ecirc;n 6.5 inch
+                        i.bi.bi-chevron-compact-down.button-screen.button-rotate
+                    .model-screen.model-show.show
+                        .checkbox-item
+                            input.mr-2#screen-6(type='radio' name="screen" value='<6')
+                            label(for='6') D&#x1B0;&#x1EDB;i 6 inch
+                        .checkbox-item
+                            input.mr-2(type='radio' id='screen-6-6.5' name="screen" value='6-6.5')
+                            label(for='6-6.5') 6 - 6.5 inch
+                        .checkbox-item
+                            input.mr-2(type='radio' id='screen-over-6.5' name="screen" value='>6.5')
+                            label(for='6.5') Tr&ecirc;n 6.5 inch
 
           .col-9
             .row
@@ -94,10 +139,10 @@ block main
                             label(for='sort-select') S&#x1EAF;p X&#x1EBF;p:
                             select#sort-select.sort-select
                                 option(value='default') M&#x1EB7;c &Dstrok;&#x1ECB;nh
-                                option(value='price-asc') Gi&aacute; Th&#x1EA5;p &Dstrok;&#x1EBF;n Cao
-                                option(value='price-desc') Gi&aacute; Cao &Dstrok;&#x1EBF;n Th&#x1EA5;p
-                                option(value='discount') Khuy&#x1EBF;n M&atilde;i Nhi&#x1EC1;u Nh&#x1EA5;t
-            .row
+                                option(value='asc') Gi&aacute; Th&#x1EA5;p &Dstrok;&#x1EBF;n Cao
+                                option(value='desc') Gi&aacute; Cao &Dstrok;&#x1EBF;n Th&#x1EA5;p
+                                
+            .row.all-products
                 .products-container.mb-5
                   each item in products
                     a(href=`/products/detail/${item.slug}`)
@@ -116,7 +161,7 @@ block main
                                 form(action=`/cart/add/${item.id}` method="post")
                                 input(type="number" class="form-control mb-2 d-none" name="quantity" value="1", min="1")
                                 button(type="submit").add-to-cart.my-2 Thêm vào giỏ hàng
-
+    script(src='/js/product.js')
 
 
                 //- .col-3.mb-3

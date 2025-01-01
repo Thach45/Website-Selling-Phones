@@ -3,6 +3,7 @@ var slug = require("mongoose-slug-updater");
 mongoose.plugin(slug);
 
 const productSchema = new mongoose.Schema({
+    brand: { type: String, required: true },
     type: { type: String, enum: ["laptop", "smartphone", "tablet", "accessory", "pc"], default: "smartphone" },  // Loại sản phẩm: simple, variable
     title: { type: String, required: true },
     description: String,
@@ -20,24 +21,23 @@ const productSchema = new mongoose.Schema({
     processor_laptop: String,
     ram_laptop: String,
     storage_laptop: String,
-    battery_life_laptop: String,
+    battery_life_laptop: Number,
     graphic_card_laptop: String,
-    display_laptop: String,
+    display_laptop: Number,
     color_laptop: String,
     weight_laptop: String,
     processor_smartphone: String,
-    display_smartphone: String,
-
+    display_smartphone: Number,
     camera_front_smartphone: String,
     camera_back_smartphone: String,
-    battery_smartphone: String,
+    battery_smartphone: Number,
     color_smartphone: String,
     weight_smartphone: String,
     processor_tablet: String,
-    display_tablet: String,
+    display_tablet: Number,
     camera_front_tablet: String,
     camera_back_tablet: String,
-    battery_tablet: String,
+    battery_tablet: Number,
     color_tablet: String,
     weight_tablet: String,
     color_accessory: String,
@@ -47,7 +47,6 @@ const productSchema = new mongoose.Schema({
     graphic_card_pc: String,
     mainboard_pc: String,
     power_supply_pc: String,
-
     mainboard: String,
     power_supply: String,
     reviews: [{

@@ -25,7 +25,7 @@ block main
                                 tr
                                     td #{index + 1}
                                     td
-                                        img.hinhdaidien(src=product.productInfor.thumbnail alt=product.productInfor.title style="width: 80px;")
+                                        img.hinhdaidien(src=product.productInfor.thumbnails[0] alt=product.productInfor.title style="width: 80px;")
                                     td() #{product.productInfor.title}
                                     td.text-right
                                         form(action=`/cart/update/${product.productId}` method="POST")
@@ -36,10 +36,10 @@ block main
                                     td.text-right #{(product.productInfor.price * ((100 - product.productInfor.discountPercentage) / 100) * product.quantity)} VND
                                     td
                                         a.btn.btn-danger.btn-delete-sanpham(href=`/cart/remove/${product.productId}` data-sp-ma=product.productId._id)
-                                            i.fa.fa-trash(aria-hidden="true") Xóa
-            a.btn.btn-warning.btn-md(href="/")
-                i.fa.fa-arrow-left(aria-hidden="true") &nbsp;Quay về trang chủ
-            a.btn.btn-primary.btn-md(href="/checkout")
-                i.fa.fa-shopping-cart(aria-hidden="true") &nbsp;Thanh toán
+                                            i.fa.fa-trash(aria-hidden="true") &nbsp;Xóa
+            a.btn.btn-warning.btn-md.mr-2.p-2(href="/")
+                i.fa.fa-arrow-left &nbsp;Quay về trang chủ
+            a.btn.btn-primary.btn-md.ml-2.p-2(href="/checkout")
+                i.fa.fa-shopping-cart &nbsp;Thanh toán
         else
             p Giỏ hàng của bạn đang trống.

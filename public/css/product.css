@@ -16,6 +16,7 @@
 .category-item {
     text-align: center;
     margin: 0 10px;
+    
 }
 
 .category-link {
@@ -29,6 +30,10 @@
     color: #007bff;
     transform: translateY(-3px);
 }
+
+/* .category-item.active {
+    border-bottom: 2px solid #007bff;
+} */
 .sort-container {
     display: flex;
     align-items: center;
@@ -43,6 +48,26 @@
     border-radius: 4px;
 }
 
+.model-show {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.model-show.show {
+    max-height: 200px;
+}
+.bi-chevron-compact-down {
+    color: #333;
+    cursor: pointer;
+}
+.button-rotate{
+    transition: transform 0.3s ease;
+}
+.button-rotate.rotate {
+    transform: rotate(180deg);
+    padding-top: 10px;
+}
 
 .sidebar {
     width: 250x;
@@ -53,7 +78,7 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     height: fit-content;
     position: sticky;
-    top: 20px;
+    top: 80px;
 }
 
 .sidebar-section {

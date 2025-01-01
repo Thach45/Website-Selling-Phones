@@ -8,10 +8,10 @@ module.exports.index = async (req, res) => {
         status: "active",
         deleted: false
     });
-    console.log(products);
     
-    res.render("client/pages/search/index.pug", {
+    
+    res.render("client/pages/products/index.pug", {
         pageTitle: "Danh sách sản phẩm",
         products: products
-    })
+    })  
 }

@@ -59,15 +59,14 @@
 }
 
 .product-info h1 {
-  font-size: 2em;
-  margin-bottom: 15px;
+  font-size: 2.5em;
+  margin-bottom: 5px;
   color: #333;
 }
 
 .rating {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 .stars {
@@ -94,9 +93,6 @@
   margin-bottom: 20px;
 }
 
-.price-section {
-  margin: 20px 0;
-}
 
 .price-wrapper {
   display: flex;
@@ -129,7 +125,7 @@
 
 /* Purchase options */
 .purchase-options {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .flex {
@@ -181,7 +177,7 @@ input[type="number"] {
 
 /* Product details section */
 .product-details {
-  margin-top: 40px;
+  margin-top: 10px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -457,8 +453,8 @@ input[type="number"] {
 
 /* Product Status */
 .product-status {
-  margin: 20px 0;
-  padding: 15px;
+ 
+  padding: 10px;
   background: #f8f9fa;
   border-radius: 8px;
 }
@@ -488,10 +484,10 @@ input[type="number"] {
 
 /* Policies Section */
 .policies {
-  margin: 30px 0;
+ 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 10px;
 }
 
 .policy-item {
@@ -522,7 +518,7 @@ input[type="number"] {
 
 /* Support Section */
 .support-section {
-  margin: 30px 0;
+  margin: 10px 0;
   padding: 20px;
   background: #f8f9fa;
   border-radius: 8px;

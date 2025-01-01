@@ -1,49 +1,99 @@
 extends ../../layouts/default.pug
 
 block main
-  .container.mt-4
-    form.needs-validation( method="post" action="/checkout/order?_method=POST")
-      .py-5.text-center
-        i.fa.fa-credit-card.fa-4x(aria-hidden="true")
-        h2 Thanh toán
-        p.lead Vui lòng kiểm tra thông tin Kháh hàng, thông tin Giỏ hàng trước khi Đặt hàng.
+  link(rel="stylesheet", href="/css/checkout.css")
+  .container.flex
+    .col-6
+      .checkout-container
+        .checkout-form
+          h2 Thanh to&aacute;n &dstrok;&#x1A1;n h&agrave;ng
+          form
+            .form-group
+              label Email
+              input(type='email' placeholder='email@example.com' required='')
+            .form-group
+              label Th&ocirc;ng tin giao h&agrave;ng
+              input(type='text' placeholder='Họ và tên' required='')
+            .form-group
+              input(type='tel' placeholder='Số điện thoại' required='')
+            .form-group
+              input(type='text' placeholder='Địa chỉ giao hàng' required='')
+            .form-group
+              label Th&ocirc;ng tin thanh to&aacute;n
+              .card-details
+                input(type='text' placeholder='Số thẻ' required='')
+                input(type='text' placeholder='MM/YY' required='')
+                input(type='text' placeholder='CVV' required='')
+            button.btn-checkout(type='submit') Ho&agrave;n t&#x1EA5;t thanh to&aacute;n
+            .secure-badge
+              svg(viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2')
+                path(d='M12 2L3 7v6a12 12 0 0 0 9 11.6A12 12 0 0 0 21 13V7l-9-5zm0 6a3 3 0 1 1 0 6 3 3 0 0 1 0-6z')
+              |                     Thanh to&aacute;n an to&agrave;n &amp; b&#x1EA3;o m&#x1EAD;t
+    .order-summary.col-6
+      h2 &Dstrok;&#x1A1;n h&agrave;ng c&#x1EE7;a b&#x1EA1;n
+      .order-item
+        .product-image &#x1F4F1;
+        .product-info
+          .product-name iPhone 14 Pro
+          .product-price 27.990.000&#x20AB;
+      .order-item
+        .product-image &#x1F3A7;
+        .product-info
+          .product-name AirPods Pro
+          .product-price 6.790.000&#x20AB;
+      .summary-details
+        .summary-item
+          span T&#x1EA1;m t&iacute;nh
+          span 34.780.000&#x20AB;
+        .summary-item
+          span Ph&iacute; v&#x1EAD;n chuy&#x1EC3;n
+          span Mi&#x1EC5;n ph&iacute;
+        .summary-item.total
+          span T&#x1ED5;ng c&#x1ED9;ng
+          span 34.780.000&#x20AB;
+  //- .container.mt-4
+  //-   form.needs-validation( method="post" action="/checkout/order?_method=POST")
+  //-     .py-5.text-center
+  //-       i.fa.fa-credit-card.fa-4x(aria-hidden="true")
+  //-       h2 Thanh toán
+  //-       p.lead Vui lòng kiểm tra thông tin Kháh hàng, thông tin Giỏ hàng trước khi Đặt hàng.
 
-      .row
-        .col-md-4.order-md-2.mb-4
-          h4.d-flex.justify-content-between.align-items-center.mb-3
-            span.text-muted Giỏ hàng
-            span.badge.badge-secondary.badge-pill 2
-          each product, index in cartDetail.products
-           ul.list-group.mb-3
-            li.list-group-item.d-flex.justify-content-between.lh-condensed
-              div
-                h6.my-0 #{product.productInfor.title}
-                small.text-muted #{product.productInfor.price}$ x #{product.quantity}
-              span.text-muted #{product.productInfor.price *(100 - product.productInfor.discountPercentage)/100* product.quantity}$
-          li.list-group-item.d-flex.justify-content-between
-           span Tổng thành tiền
-           strong #{cartDetail.total}$
+  //-     .row
+  //-       .col-md-4.order-md-2.mb-4
+  //-         h4.d-flex.justify-content-between.align-items-center.mb-3
+  //-           span.text-muted Giỏ hàng
+  //-           span.badge.badge-secondary.badge-pill 2
+  //-         each product, index in cartDetail.products
+  //-          ul.list-group.mb-3
+  //-           li.list-group-item.d-flex.justify-content-between.lh-condensed
+  //-             div
+  //-               h6.my-0 #{product.productInfor.title}
+  //-               small.text-muted #{product.productInfor.price}$ x #{product.quantity}
+  //-             span.text-muted #{product.productInfor.price *(100 - product.productInfor.discountPercentage)/100* product.quantity}$
+  //-         li.list-group-item.d-flex.justify-content-between
+  //-          span Tổng thành tiền
+  //-          strong #{cartDetail.total}$
 
 
-        .col-md-8.order-md-1
-          h4.mb-3 Thông tin khách hàng
+  //-       .col-md-8.order-md-1
+  //-         h4.mb-3 Thông tin khách hàng
 
-          .row
-           .card.p-4.my-4
-            .col-md-12
-             div(class="form-group")
-              label(for="kh_ten" class="form-group") Họ tên
-              input.form-control(type="text" name="name" id="name" value="" required )
+  //-         .row
+  //-          .card.p-4.my-4
+  //-           .col-md-12
+  //-            div(class="form-group")
+  //-             label(for="kh_ten" class="form-group") Họ tên
+  //-             input.form-control(type="text" name="name" id="name" value="" required )
           
-            .col-md-12
-              label(for="kh_diachi") Địa chỉ
-              input.form-control(type="text" name="address" id="address"  required class="form-group")
-            .col-md-12
-              label(for="kh_dienthoai") Điện thoại
-              input.form-control(type="text" name="phone" id="phone" value="" required )
-            .col-md-12
-              label(for="kh_email") Email
-              input.form-control(type="text" name="email" id="email" value="" required )
-            .col-md-12
-          hr.mb-4
-          button.btn.btn-primary.btn-lg.btn-block(type="submit" name="btnDatHang") Đặt hàng
+  //-           .col-md-12
+  //-             label(for="kh_diachi") Địa chỉ
+  //-             input.form-control(type="text" name="address" id="address"  required class="form-group")
+  //-           .col-md-12
+  //-             label(for="kh_dienthoai") Điện thoại
+  //-             input.form-control(type="text" name="phone" id="phone" value="" required )
+  //-           .col-md-12
+  //-             label(for="kh_email") Email
+  //-             input.form-control(type="text" name="email" id="email" value="" required )
+  //-           .col-md-12
+  //-         hr.mb-4
+  //-         button.btn.btn-primary.btn-lg.btn-block(type="submit" name="btnDatHang") Đặt hàng
