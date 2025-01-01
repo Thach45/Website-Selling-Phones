@@ -2,6 +2,7 @@ const Product = require("../../model/product.model");
 const User = require("../../model/user.model");
 const Cart = require("../../model/cart.model");
 const Order = require("../../model/order.model");
+const { format } = require('date-fns');
 module.exports.index = async (req, res) => {
     const user = await User.findOne({ tokenUser: req.cookies.tokenUser });
     const idUser = user.cartID;
@@ -67,6 +68,16 @@ module.exports.success = async (req, res) => {
     order.total = total;
     const user = await User.findOne({ cartID: order.cart_id });
     user.cartID = "";
+    order.timeOrder = order.createdAt.toLocaleDateString('vi-VN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    });
+    
     await user.save();
     res.render("client/pages/checkout/success.pug", {
         pageTitle: "Đặt hàng thành công",

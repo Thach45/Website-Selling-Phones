@@ -7,17 +7,17 @@ block main
       .checkout-container
         .checkout-form
           h2 Thanh to&aacute;n &dstrok;&#x1A1;n h&agrave;ng
-          form
+          form( method="post" action="/checkout/order?_method=POST")
             .form-group
               label Email
-              input(type='email' placeholder='email@example.com' required='')
+              input(type='email' placeholder='email@example.com' name="email" required='')
             .form-group
               label Th&ocirc;ng tin giao h&agrave;ng
-              input(type='text' placeholder='Họ và tên' required='')
+              input(type='text' placeholder='Họ và tên' required='' name="name")
             .form-group
-              input(type='tel' placeholder='Số điện thoại' required='')
+              input(type='tel' placeholder='Số điện thoại' name="phone" required='')
             .form-group
-              input(type='text' placeholder='Địa chỉ giao hàng' required='')
+              input(type='text' placeholder='Địa chỉ giao hàng' name="address" required='')
             .form-group
               label Th&ocirc;ng tin thanh to&aacute;n
               .card-details
@@ -31,26 +31,36 @@ block main
               |                     Thanh to&aacute;n an to&agrave;n &amp; b&#x1EA3;o m&#x1EAD;t
     .order-summary.col-6
       h2 &Dstrok;&#x1A1;n h&agrave;ng c&#x1EE7;a b&#x1EA1;n
-      .order-item
-        .product-image &#x1F4F1;
-        .product-info
-          .product-name iPhone 14 Pro
-          .product-price 27.990.000&#x20AB;
-      .order-item
-        .product-image &#x1F3A7;
-        .product-info
-          .product-name AirPods Pro
-          .product-price 6.790.000&#x20AB;
+      each product, index in cartDetail.products
+        .order-item
+          .product-image 
+            img(src=product.productInfor.thumbnails[0])
+         
+          .product-info
+            .flex.justify-between
+              .product-name #{product.productInfor.title}
+              .product-quantity x#{product.quantity}
+            .flex.justify-between
+              .product-price  Giá cũ
+              .product-price #{product.productInfor.price} &#x20AB;
+            .flex.justify-between
+              .product-price  Khuyến mãi
+              .product-price -#{product.productInfor.discountPercentage} %
+            .flex.justify-between
+              .product-price  Giá mới
+              .product-price #{product.productInfor.price *(100 - product.productInfor.discountPercentage)/100* product.quantity} &#x20AB;
+            
+      
       .summary-details
         .summary-item
           span T&#x1EA1;m t&iacute;nh
-          span 34.780.000&#x20AB;
+          span #{cartDetail.total} &#x20AB;
         .summary-item
           span Ph&iacute; v&#x1EAD;n chuy&#x1EC3;n
           span Mi&#x1EC5;n ph&iacute;
         .summary-item.total
           span T&#x1ED5;ng c&#x1ED9;ng
-          span 34.780.000&#x20AB;
+          span #{cartDetail.total} &#x20AB;
   //- .container.mt-4
   //-   form.needs-validation( method="post" action="/checkout/order?_method=POST")
   //-     .py-5.text-center
